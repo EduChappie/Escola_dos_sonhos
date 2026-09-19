@@ -1,0 +1,7 @@
+O nome da pasta está "addEdu" pq é temporário
+
+a organização do player_obj e sprite não será assim
+
+to na espera do sprite do diretor pra isso
+
+então em suma aqui, todos os arquivos são temporários

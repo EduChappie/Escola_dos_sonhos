@@ -1,0 +1,11 @@
+{
+  "$GMNotes":"v1",
+  "%Name":"leia-me",
+  "name":"leia-me",
+  "parent":{
+    "name":"addEdu",
+    "path":"folders/Sprites/addEdu.yy",
+  },
+  "resourceType":"GMNotes",
+  "resourceVersion":"2.0",
+}
