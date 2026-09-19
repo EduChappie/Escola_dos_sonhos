@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ActiveConfig="Default" Platform="Windows" Runtime="VM" Device="Default">
+	<Desktop x="0" y="23" width="2560" height="1369" id="19" title="Escola_dos_Sonhos - GameMaker-LTS2026" windowState="Maximized" dpi="120">
+		<Workspaces>
+			<Workspace active="False" chain="False" title="Escola" localise_title="" workspace_offset="[0, 0]" workspace_scale="1">
+				<Module Command="open_room_editor" WorkspaceOwner="true">
+					<Room id="Escola">
+						<RoomEditArea>
+							<PanArea zoom="0.53999996" pan="[-379.0732, -397.72766]" />
+							<Properties />
+							<Selected />
+							<GridSettings XSpacing="32" YSpacing="32" DisplayGrid="False" SnapToGrid="True" GridColour="#32FFFFFF" />
+						</RoomEditArea>
+						<EditorContainer grid_rowlayout="['1*']" grid_columnlayout="['200dpi_px', '1*']">
+							<SnappableWidgets>
+								<Widget Id="RoomSnapContainer" Orientation="Left" />
+							</SnappableWidgets>
+						</EditorContainer>
+					</Room>
+				</Module>
+			</Workspace>
+			<Workspace active="False" chain="True" title="ideia_base" localise_title="" user_edited_title="True" workspace_offset="[34, 4947]" workspace_scale="1">
+				<Module Command="open_object_editor">
+					<ObjectEditor objectName="timeManager" eventsOpen="true" parentOpen="false" physicsOpen="false" physicsEditorOpen="false" propertiesOpen="false" activeWindow="parent">
+						<WorkspaceChain left="408dpi_px" top="115.200005dpi_px" />
+					</ObjectEditor>
+				</Module>
+				<Module Command="open_object_editor">
+					<ObjectEditor objectName="missionManager" eventsOpen="true" parentOpen="false" physicsOpen="false" physicsEditorOpen="false" propertiesOpen="false" activeWindow="parent">
+						<WorkspaceChain left="408dpi_px" top="1638dpi_px" />
+					</ObjectEditor>
+				</Module>
+				<Module Command="open_object_editor">
+					<ObjectEditor objectName="NPCManager" eventsOpen="true" parentOpen="false" physicsOpen="false" physicsEditorOpen="false" propertiesOpen="false" activeWindow="parent">
+						<WorkspaceChain left="408dpi_px" top="1130.4dpi_px" />
+					</ObjectEditor>
+				</Module>
+				<Module Command="open_object_editor">
+					<ObjectEditor objectName="gameManager" eventsOpen="true" parentOpen="false" physicsOpen="false" physicsEditorOpen="false" propertiesOpen="false" activeWindow="parent">
+						<WorkspaceChain left="408dpi_px" top="622.8dpi_px" />
+					</ObjectEditor>
+				</Module>
+				<Module Command="open_object_editor">
+					<ObjectEditor objectName="dialogoManager_UI" eventsOpen="true" parentOpen="false" physicsOpen="false" physicsEditorOpen="false" propertiesOpen="false" activeWindow="parent">
+						<WorkspaceChain left="408dpi_px" top="2145.6dpi_px" />
+					</ObjectEditor>
+				</Module>
+				<Module Command="open_object_editor">
+					<ObjectEditor objectName="missionInstance" eventsOpen="true" parentOpen="false" physicsOpen="false" physicsEditorOpen="false" propertiesOpen="false" activeWindow="parent">
+						<WorkspaceChain left="408dpi_px" top="3837.2dpi_px" />
+					</ObjectEditor>
+				</Module>
+				<Module Command="open_object_editor">
+					<ObjectEditor objectName="NPCData" eventsOpen="true" parentOpen="false" physicsOpen="false" physicsEditorOpen="false" propertiesOpen="false" activeWindow="parent">
+						<WorkspaceChain left="408dpi_px" top="4327.2dpi_px" />
+					</ObjectEditor>
+				</Module>
+				<Module Command="open_object_editor">
+					<ObjectEditor objectName="statusManager_UI" eventsOpen="true" parentOpen="false" physicsOpen="false" physicsEditorOpen="false" propertiesOpen="false" activeWindow="parent">
+						<WorkspaceChain left="408dpi_px" top="2653.2dpi_px" />
+					</ObjectEditor>
+				</Module>
+				<Module Command="open_object_editor">
+					<ObjectEditor objectName="missionData" eventsOpen="true" parentOpen="false" physicsOpen="false" physicsEditorOpen="false" propertiesOpen="false" activeWindow="parent">
+						<WorkspaceChain left="408dpi_px" top="3160.8dpi_px" />
+					</ObjectEditor>
+				</Module>
+			</Workspace>
+			<Workspace active="True" chain="True" title="Workspace 1" localise_title="Workspace_TabTitle" localise_arguments="[&#xD;&#xA;    &quot;1&quot;&#xD;&#xA;]" workspace_offset="[-317.60455, 1226.8822]" workspace_scale="0.70000005">
+				<Module Command="open_sprite_editor">
+					<SpriteEditor SpriteEditor_Id="sPlayer_down_idle">
+						<WorkspaceChain left="-94.599976dpi_px" top="-91.333305dpi_px" />
+					</SpriteEditor>
+				</Module>
+				<Module Command="open_sprite_editor">
+					<SpriteEditor SpriteEditor_Id="sPlayer_down_walk">
+						<WorkspaceChain left="-94.599976dpi_px" top="572.2667dpi_px" />
+					</SpriteEditor>
+				</Module>
+				<Module Command="open_sprite_editor">
+					<SpriteEditor SpriteEditor_Id="sPlayer_front_idle">
+						<WorkspaceChain left="1077.3995dpi_px" top="-68.1333dpi_px" />
+					</SpriteEditor>
+				</Module>
+				<Module Command="open_sprite_editor">
+					<SpriteEditor SpriteEditor_Id="sPlayer_front_walk">
+						<WorkspaceChain left="1097.6006dpi_px" top="591.9998dpi_px" />
+					</SpriteEditor>
+				</Module>
+				<Module Command="open_sprite_editor">
+					<SpriteEditor SpriteEditor_Id="sPlayer_side_idle">
+						<WorkspaceChain left="2239.2673dpi_px" top="-92.53316dpi_px" />
+					</SpriteEditor>
+				</Module>
+				<Module Command="open_sprite_editor">
+					<SpriteEditor SpriteEditor_Id="sPlayer_side_walk">
+						<WorkspaceChain left="2233.3997dpi_px" top="574.26685dpi_px" />
+					</SpriteEditor>
+				</Module>
+				<Module Command="open_object_editor">
+					<ObjectEditor objectName="obj_player" eventsOpen="true" parentOpen="false" physicsOpen="false" physicsEditorOpen="false" propertiesOpen="false" activeWindow="parent">
+						<WorkspaceChain left="-78.39939dpi_px" top="1268.0009dpi_px" />
+					</ObjectEditor>
+				</Module>
+			</Workspace>
+		</Workspaces>
+		<Dock state="Expanded" type="eLeft" restore_size="304.80002dpi_px" active_tab="0">
+			<DockTab localise_title="Inspector_WindowTitle" cell_sizes="[333,666]" layout_id="dock_tab_1" layout_guid="d1c89610-4fda-40c6-8317-56c37091a9c8">
+				<Module Command="open_inspector">
+					<Inspector resName="obj_player">
+						<Window left="0dpi_px" right="" top="0dpi_px" bottom="" width="340dpi_px" height="600dpi_px" flags="Default" title="Inspector: obj_player" localise_title="Inspector_WindowTitleArg" />
+					</Inspector>
+				</Module>
+			</DockTab>
+		</Dock>
+		<Dock state="Expanded" type="eRight" restore_size="307.19998dpi_px" active_tab="0">
+			<DockTab localise_title="ResourceTree_Title" cell_sizes="[1000]" layout_id="dock_tab_1" layout_guid="362296cc-3fc1-4bae-814b-f82384e86801">
+				<Module Command="open_asset_browser">
+					<AssetBrowser sort="AtoZ" foldersFirst="True" zoom="100">
+						<Window left="" right="" top="" bottom="" width="370dpi_px" height="463dpi_px" flags="Default" title="Asset Browser" localise_title="AssetBrowser_Title" />
+					</AssetBrowser>
+				</Module>
+			</DockTab>
+		</Dock>
+		<Dock state="Expanded" type="eBottom" restore_size="199.99998dpi_px" active_tab="0">
+			<DockTab localise_title="OutputPanel_Output" cell_sizes="[1000]" layout_id="dock_tab_1" layout_guid="4a974b4a-5e91-482a-aded-3205b57de54a">
+				<Module Command="open_output_panel">
+					<Window left="0dpi_px" right="" top="0dpi_px" bottom="" width="900dpi_px" height="240dpi_px" flags="Default" title="Output" localise_title="OutputPanel_Title" />
+				</Module>
+			</DockTab>
+			<DockTab localise_title="OutputPanel_SearchResults" cell_sizes="[1000]" layout_id="dock_tab_2" layout_guid="3d95fcd7-75eb-4672-bd20-cca08d22547f">
+				<Module Command="open_search_output_panel">
+					<Window left="0dpi_px" right="" top="0dpi_px" bottom="" width="900dpi_px" height="240dpi_px" flags="Default" title="Search Results" localise_title="OutputPanel_SearchResults" />
+				</Module>
+			</DockTab>
+			<DockTab localise_title="OutputPanel_SourceControl" cell_sizes="[1000]" layout_id="dock_tab_3" layout_guid="00ead080-4211-4c4a-87e0-a71a4aed07cc">
+				<Module Command="open_sc_output_panel">
+					<Window left="0dpi_px" right="" top="0dpi_px" bottom="" width="900dpi_px" height="240dpi_px" flags="Default" title="Source Control" localise_title="OutputPanel_SourceControl" />
+				</Module>
+			</DockTab>
+			<DockTab localise_title="Breakpoints" cell_sizes="[1000]" layout_id="dock_tab_4" layout_guid="89017621-db49-4c67-b49f-ba0f26b6b1f3">
+				<Module Command="open_breakpoint_mgr">
+					<Window left="0dpi_px" right="" top="0dpi_px" bottom="" width="900dpi_px" height="240dpi_px" flags="Default" title="Breakpoints" localise_title="Breakpoints" />
+				</Module>
+			</DockTab>
+			<DockTab localise_title="CompileErrors" cell_sizes="[1000]" layout_id="dock_tab_5" layout_guid="8d8950e3-fb82-4fd0-b715-146888ad771f">
+				<Module Command="show_compile_errors">
+					<Window left="0dpi_px" right="" top="0dpi_px" bottom="" width="900dpi_px" height="240dpi_px" flags="Default" title="Compile Errors" localise_title="CompileErrors" />
+				</Module>
+			</DockTab>
+			<DockTab localise_title="Feather_LintMessages_Title" cell_sizes="[1000]" layout_id="Diagnostics" layout_guid="13f3a856-20cf-4df7-bf40-384595430c96">
+				<Module Command="feather_lint_messages_initialized">
+					<Window left="" right="" top="" bottom="" width="800dpi_px" height="600dpi_px" flags="Default" title="Feather Messages" localise_title="Feather_LintMessages_Title" />
+				</Module>
+			</DockTab>
+			<DockTab localise_title="PrefabLibrary" cell_sizes="[1000]" layout_id="Prefabs" layout_guid="13f3a856-20cf-4df7-bf40-384595430c96">
+				<Module Command="open_prefab_library">
+					<PrefabLibrary>
+						<Window left="" right="" top="" bottom="" width="930dpi_px" height="600dpi_px" flags="Default" title="Prefab Library - Available Prefabs" localise_title="PrefabLibrary" />
+					</PrefabLibrary>
+				</Module>
+			</DockTab>
+		</Dock>
+	</Desktop>
+	<Modules>
+		<YoYoStudio.Plugins.RoomEditor.RoomEditorModule>
+			<RoomEditor>
+				<Layers left="" right="" top="" bottom="" width="377dpi_px" height="310dpi_px" flags="CloseButton, MinimizeButton, ResizeButton" title="Layers - Escola" localise_title="RoomEditor_Layers" dock_type="eLeft" dock_tab_index="0" dock_list_index="0" dock_proportion="0.66767174" dock_tab_name="Inspector" dock_tab_localise_name="Inspector_WindowTitle" dock_tab_id="dock_tab_1" dock_tab_guid="d1c89610-4fda-40c6-8317-56c37091a9c8" desktop="19" />
+				<UIPreview enabled="False" preset="Room" clip="True" x="0" y="0" />
+			</RoomEditor>
+		</YoYoStudio.Plugins.RoomEditor.RoomEditorModule>
+		<YoYoStudio.Plugins.RoomEditor.Tools.RoomEditor_TileEditing>
+			<RoomEditor_TileEditing>
+				<TileSet left="" right="370dpi_px" top="125dpi_px" bottom="" width="450dpi_px" height="400dpi_px" flags="Default" title="Tiles - Escola" localise_title="RoomEditor_TileWindow" dock_type="eRight" dock_tab_index="1" dock_list_index="0" dock_proportion="1" dock_tab_name="Room Editor" dock_tab_localise_name="RoomEditor_DockTab" dock_tab_id="room_editor_tab" dock_tab_guid="2d8901f9-93d1-4a07-9e35-dc3592073ca0" desktop="19" />
+			</RoomEditor_TileEditing>
+		</YoYoStudio.Plugins.RoomEditor.Tools.RoomEditor_TileEditing>
+	</Modules>
+	<FoldRegions>
+		<FoldState docFile="objects/missionData/Create_0.gml" foldedRegions="0" />
+	</FoldRegions>
+</Project>
