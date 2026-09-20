@@ -3,4 +3,10 @@ aqui fica todos os dados de NPCs do jogo,
 
 ### IMPORTANTE ###
 se quiser
-adicionar mais npc, é aqui    ---->
+adicionar mais npc, é aqui    ---->   npc_Data.gml
+
+
+
+Caso queira mexer nas missões
+
+---> arquivo "mission_Data.gml"

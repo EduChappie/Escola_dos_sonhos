@@ -2,7 +2,7 @@
 <Project ActiveConfig="Default" Platform="Windows" Runtime="VM" Device="Default">
 	<Desktop x="0" y="23" width="2560" height="1369" id="19" title="Escola_dos_Sonhos - GameMaker-LTS2026" windowState="Maximized" dpi="120">
 		<Workspaces>
-			<Workspace active="False" chain="False" title="Escola" localise_title="" workspace_offset="[0, 0]" workspace_scale="1">
+			<Workspace active="True" chain="False" title="Escola" localise_title="" workspace_offset="[0, 0]" workspace_scale="1">
 				<Module Command="open_room_editor" WorkspaceOwner="true">
 					<Room id="Escola">
 						<RoomEditArea>
@@ -10,7 +10,6 @@
 							<Properties />
 							<Selected>
 								<Layer GUID="Instances" />
-								<Item name="inst_66489395" path="rooms/Escola/Escola.yy" />
 							</Selected>
 							<GridSettings XSpacing="32" YSpacing="32" DisplayGrid="False" SnapToGrid="True" GridColour="#32FFFFFF" />
 						</RoomEditArea>
@@ -22,18 +21,10 @@
 					</Room>
 				</Module>
 			</Workspace>
-			<Workspace active="False" chain="True" title="ideia_base" localise_title="" user_edited_title="True" workspace_offset="[338.50003, 1913.9999]" workspace_scale="0.8">
+			<Workspace active="False" chain="True" title="ideia_base" localise_title="" user_edited_title="True" workspace_offset="[509.8334, 251.91663]" workspace_scale="0.8">
 				<Module Command="open_object_editor">
 					<ObjectEditor objectName="timeManager" eventsOpen="true" parentOpen="false" physicsOpen="false" physicsEditorOpen="false" propertiesOpen="false" activeWindow="parent">
-						<WorkspaceChain left="408dpi_px" top="102.40078dpi_px" />
-					</ObjectEditor>
-				</Module>
-				<Module Command="open_object_editor">
-					<ObjectEditor objectName="gameManager" eventsOpen="true" parentOpen="false" physicsOpen="false" physicsEditorOpen="false" propertiesOpen="false" activeWindow="parent">
-						<WorkspaceChain left="408dpi_px" top="592.4008dpi_px" />
-						<DocumentWindow columns="1" fullscreen="False" activeTab="0" isActive="False" w="1125px" h="750px" linkIndex="-1">
-							<Script column="0" file="${project_dir}\objects\gameManager\Create_0.gml" resource="gameManager" subResource="0_0" overridden_title="False" view_readonly="False" />
-						</DocumentWindow>
+						<WorkspaceChain left="408dpi_px" top="98.40098dpi_px" />
 					</ObjectEditor>
 				</Module>
 				<Module Command="open_object_editor">
@@ -48,7 +39,7 @@
 				</Module>
 				<Module Command="open_object_editor">
 					<ObjectEditor objectName="dialogoManager_UI" eventsOpen="true" parentOpen="false" physicsOpen="false" physicsEditorOpen="false" propertiesOpen="false" activeWindow="parent">
-						<WorkspaceChain left="408dpi_px" top="2259.2dpi_px" />
+						<WorkspaceChain left="402dpi_px" top="1590.401dpi_px" />
 						<DocumentWindow columns="1" fullscreen="False" activeTab="1" isActive="False" w="1125px" h="750px" linkIndex="-1">
 							<Script column="0" file="${project_dir}\objects\dialogoManager_UI\Step_0.gml" resource="dialogoManager_UI" subResource="3_0" overridden_title="False" view_readonly="False" />
 							<Script column="0" file="${project_dir}\objects\dialogoManager_UI\Draw_0.gml" resource="dialogoManager_UI" subResource="8_0" overridden_title="False" view_readonly="False" />
@@ -56,8 +47,11 @@
 					</ObjectEditor>
 				</Module>
 				<Module Command="open_object_editor">
-					<ObjectEditor objectName="missionManager" eventsOpen="true" parentOpen="false" physicsOpen="false" physicsEditorOpen="false" propertiesOpen="false" activeWindow="parent">
-						<WorkspaceChain left="406.4dpi_px" top="1687.6dpi_px" />
+					<ObjectEditor objectName="gameManager" eventsOpen="true" parentOpen="false" physicsOpen="false" physicsEditorOpen="false" propertiesOpen="false" activeWindow="parent">
+						<WorkspaceChain left="408dpi_px" top="592.4011dpi_px" />
+						<DocumentWindow columns="1" fullscreen="False" activeTab="0" isActive="False" w="1125px" h="750px" linkIndex="-1">
+							<Script column="0" file="${project_dir}\objects\gameManager\Create_0.gml" resource="gameManager" subResource="0_0" overridden_title="False" view_readonly="False" />
+						</DocumentWindow>
 					</ObjectEditor>
 				</Module>
 			</Workspace>
@@ -104,7 +98,7 @@
 					</ObjectEditor>
 				</Module>
 			</Workspace>
-			<Workspace active="False" chain="True" title="npc_work" localise_title="" user_edited_title="True" workspace_offset="[530, 446]" workspace_scale="1">
+			<Workspace active="False" chain="True" title="npc_work" localise_title="" user_edited_title="True" workspace_offset="[437, 308]" workspace_scale="1">
 				<Module Command="open_sprite_editor">
 					<SpriteEditor SpriteEditor_Id="sArea50x">
 						<WorkspaceChain left="410.4dpi_px" top="1862dpi_px" />
@@ -147,13 +141,32 @@
 					</DocumentWindow>
 				</Module>
 			</Workspace>
-			<Workspace active="True" chain="True" title="missao" localise_title="" user_edited_title="True" workspace_offset="[0, 0]" workspace_scale="1" />
+			<Workspace active="False" chain="True" title="missao" localise_title="" user_edited_title="True" workspace_offset="[-60, -184]" workspace_scale="1">
+				<Module Command="DocumentWindow_RestoreLayout" WorkspaceOwner="true">
+					<DocumentWindow columns="1" fullscreen="False" activeTab="0" isActive="False" w="1413px" h="901px">
+						<Script column="0" file="${project_dir}\scripts\mission_Data\mission_Data.gml" resource="mission_Data" overridden_title="False" view_readonly="False" />
+						<WorkspaceChain left="112.799805dpi_px" top="637.2dpi_px" />
+					</DocumentWindow>
+				</Module>
+				<Module Command="open_object_editor">
+					<ObjectEditor objectName="missionManager" eventsOpen="true" parentOpen="false" physicsOpen="false" physicsEditorOpen="false" propertiesOpen="false" activeWindow="parent">
+						<WorkspaceChain left="95.99999dpi_px" top="7.2000093dpi_px" />
+					</ObjectEditor>
+				</Module>
+			</Workspace>
+			<Workspace active="False" chain="False" title="missionManager: Create" localise_title="DocumentWindow_Title_ObjectEvent" localise_arguments="[&#xD;&#xA;    &quot;missionManager&quot;,&#xD;&#xA;    &quot;Create&quot;&#xD;&#xA;]" workspace_offset="[0, 0]" workspace_scale="1">
+				<Module Command="DocumentWindow_RestoreLayout" WorkspaceOwner="true">
+					<DocumentWindow columns="1" fullscreen="True" activeTab="0" isActive="False">
+						<Script column="0" file="${project_dir}\objects\missionManager\Create_0.gml" resource="missionManager" subResource="0_0" overridden_title="False" view_readonly="False" />
+					</DocumentWindow>
+				</Module>
+			</Workspace>
 		</Workspaces>
 		<Dock state="Expanded" type="eLeft" restore_size="304.80002dpi_px" active_tab="0">
 			<DockTab localise_title="Inspector_WindowTitle" cell_sizes="[333,666]" layout_id="dock_tab_1" layout_guid="d1c89610-4fda-40c6-8317-56c37091a9c8">
 				<Module Command="open_inspector">
-					<Inspector resName="missionManager">
-						<Window left="0dpi_px" right="" top="0dpi_px" bottom="" width="340dpi_px" height="600dpi_px" flags="Default" title="Inspector: missionManager" localise_title="Inspector_WindowTitleArg" />
+					<Inspector resName="missionInstance">
+						<Window left="0dpi_px" right="" top="0dpi_px" bottom="" width="340dpi_px" height="600dpi_px" flags="Default" title="Inspector: missionInstance" localise_title="Inspector_WindowTitleArg" />
 					</Inspector>
 				</Module>
 			</DockTab>

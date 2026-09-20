@@ -31,6 +31,9 @@ function npc_posicao_no_mes(_dado, _mes) {
 
 
 
+
+
+
 function npc_posicionar(_mes) {
 	 var _ids = variable_struct_get_names(npcs);
 	 
@@ -56,4 +59,24 @@ function npc_posicionar(_mes) {
     }
 	
 
+}
+
+
+
+
+
+
+function npc_sortear_por_tipo(_tipo) {
+    var _ids = variable_struct_get_names(NPCManager.npcs);
+    var _candidatos = [];
+
+    for (var i = 0; i < array_length(_ids); i++) {
+        var _dado = NPCManager.npcs[$ _ids[i]];
+        if (_tipo == "qualquer" || _dado.tipo == _tipo) {
+            array_push(_candidatos, _dado.id);
+        }
+    }
+
+    if (array_length(_candidatos) == 0) return undefined;
+    return _candidatos[irandom(array_length(_candidatos) - 1)];
 }

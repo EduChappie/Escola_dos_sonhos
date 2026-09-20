@@ -35,7 +35,6 @@
     {"id":{"name":"leia-me","path":"notes/leia-me/leia-me.yy",},},
     {"id":{"name":"dialogoManager_UI","path":"objects/dialogoManager_UI/dialogoManager_UI.yy",},},
     {"id":{"name":"gameManager","path":"objects/gameManager/gameManager.yy",},},
-    {"id":{"name":"missionInstance","path":"objects/missionInstance/missionInstance.yy",},},
     {"id":{"name":"missionManager","path":"objects/missionManager/missionManager.yy",},},
     {"id":{"name":"NPCManager","path":"objects/NPCManager/NPCManager.yy",},},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},},
