@@ -7,7 +7,6 @@ function npc_catalog() {
             materia: "Quimica",
             sprite: sNPC_front_idle,
             afinidade: 0,
-			talk: true,
 			i: 0,// i referente a interação 0 == nunca interagiram
             agenda_mensal: [
                 { mes: 0,  sala: "sala_artes",  x: 572, y: 604 },
@@ -20,7 +19,6 @@ function npc_catalog() {
             tipo: "professor",
             materia: "Historia",
             sprite: sPlayer_front_idle, // trocar depois o sprite, please
-            talk: true,
 			i: 0,
 			afinidade: 0,
             agenda_mensal: [ 

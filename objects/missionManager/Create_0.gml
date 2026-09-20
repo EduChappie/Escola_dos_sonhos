@@ -1,12 +1,15 @@
 
-mission_catalog = mission_Data()
-active_mission = [];
+mission_catalog = mission_Data();
+active_missions = [];
 mission_history = [];
+
+
+
 
 
 // função de achar missão por ID
 function mission_data_get(_mission_id) {
-    var _catalogo = obj_mission_manager.mission_catalog;
+    var _catalogo = mission_catalog;
     for (var i = 0; i < array_length(_catalogo); i++) {
         if (_catalogo[i].id == _mission_id) return _catalogo[i];
     }
@@ -19,7 +22,7 @@ function mission_data_get(_mission_id) {
 // verificar se NPC tem missão pendente
 // pra mostrar balão de fala, por exemplo
 function missao_pendente_de(_npc_id) {
-    var _ativas = obj_mission_manager.active_missions;
+    var _ativas = active_missions;
 	
 	
     for (var i = 0; i < array_length(_ativas); i++) {
@@ -41,7 +44,7 @@ function missao_pendente_de(_npc_id) {
 
 // sortear as missões para o próximo mês
 function mission_sortear_para_mes(_mes) {
-    var _catalogo = obj_mission_manager.mission_catalog;
+    var _catalogo = mission_catalog;
 
     for (var i = 0; i < array_length(_catalogo); i++) {
         var _md = _catalogo[i];
@@ -50,12 +53,13 @@ function mission_sortear_para_mes(_mes) {
         if (_md.meses_disponiveis != undefined
         && !array_contains(_md.meses_disponiveis, _mes)) continue;
 
+
         // filtro 2: define o alvo (npc específico ou por tipo)
         var _npc_id_alvo;
         if (_md.npc_id_especifico != undefined) {
-            _npc_id_alvo = _md.npc_id_especifico;
+            _npc_id_alvo = _md.npc_id_especifico; // quer dizer que a missão é pra alguém específico
         } else {
-            _npc_id_alvo = npc_sortear_por_tipo(_md.tipo_npc_alvo);
+            _npc_id_alvo = NPCManager.npc_sortear_por_tipo(_md.tipo_npc_alvo);
             if (_npc_id_alvo == undefined) continue;
         }
 
@@ -73,7 +77,7 @@ function mission_sortear_para_mes(_mes) {
             mes_ultima_interacao: _mes
         };
 
-        array_push(obj_mission_manager.active_missions, _instancia);
+        array_push(active_missions, _instancia);
     }
 }
 
@@ -91,7 +95,8 @@ function mission_sortear_para_mes(_mes) {
 
 // verificar se uma missão já não está ativa, para a aleatoriedade
 function mission_ja_ativa(_npc_id, _mission_id) {
-    var _ativas = obj_mission_manager.active_missions;
+	
+    var _ativas = active_missions;
     for (var i = 0; i < array_length(_ativas); i++) {
         if (_ativas[i].npc_id == _npc_id
         && _ativas[i].mission_id == _mission_id
@@ -108,7 +113,7 @@ function mission_ja_ativa(_npc_id, _mission_id) {
 // função de resolve  missão com base na escolha do player
 // não sei como mexer ainda, verificar depois
 function mission_resolver(_instance_id, _indice_opcao) {
-    var _ativas = obj_mission_manager.active_missions;
+    var _ativas = active_missions;
 
     for (var i = 0; i < array_length(_ativas); i++) {
         if (_ativas[i].instance_id != _instance_id) continue;
@@ -125,7 +130,7 @@ function mission_resolver(_instance_id, _indice_opcao) {
         }
 
         _instancia.status = "resolvida";
-        array_push(obj_mission_manager.mission_history, _instancia);
+        array_push(mission_history, _instancia);
         array_delete(_ativas, i, 1);
         return;
     }
@@ -138,7 +143,7 @@ function mission_resolver(_instance_id, _indice_opcao) {
 
 // processar postergação de missão em passagem de mês
 function mission_processar_fim_de_mes(_mes_atual) {
-    var _ativas = obj_mission_manager.active_missions;
+    var _ativas = active_missions;
 
     // varre de trás pra frente porque vamos remover itens durante o loop
     for (var i = array_length(_ativas) - 1; i >= 0; i--) {
@@ -155,13 +160,10 @@ function mission_processar_fim_de_mes(_mes_atual) {
 
         if (_instancia.grau_atual >= _md.grau_maximo) {
             _instancia.status = "expirada";
-            array_push(obj_mission_manager.mission_history, _instancia);
+            array_push(mission_history, _instancia);
             array_delete(_ativas, i, 1);
         }
     }
 
     mission_sortear_para_mes(_mes_atual + 1);
 }
-
-
-

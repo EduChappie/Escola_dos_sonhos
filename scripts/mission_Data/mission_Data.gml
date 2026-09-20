@@ -4,8 +4,8 @@ function mission_Data(){
             id: "gilson_reagente_sumido",
             titulo: "Reagente em falta",
             tipo_npc_alvo: "professor",
-            npc_id_especifico: "prof_gilson",
-            meses_disponiveis: [3, 4],
+            npc_id_especifico: undefined, //caso a missão não tenha, tipo específico, bote undefined
+            meses_disponiveis: [0],
             peso_sorteio: 1.0,
             texto: "O professor de química precisa de reagentes...",
             tipo_resolucao: "escolha_livre",
@@ -22,3 +22,4 @@ function mission_Data(){
         },
 	]
 }
+

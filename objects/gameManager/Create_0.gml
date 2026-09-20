@@ -8,3 +8,4 @@ moeda = 0;
 
 
 NPCManager.npc_posicionar(mes_atual);
+missionManager.mission_sortear_para_mes(mes_atual);

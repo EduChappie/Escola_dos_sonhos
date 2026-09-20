@@ -1,5 +1,6 @@
 
-if (npc_proximo != noone and npc_proximo.i==0 and npc_proximo.talk) {
+
+if (npc_proximo != noone and npc_proximo.i==0 and missionManager.missao_pendente_de(npc_proximo.id) != undefined) {
 	// quer dizer que o player pode interagir
 	/*
 		Condições: 

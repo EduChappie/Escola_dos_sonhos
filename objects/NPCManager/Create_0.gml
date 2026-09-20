@@ -44,7 +44,7 @@ function npc_posicionar(_mes) {
         var _inst = instance_create_layer(_pos.x, _pos.y, "Instances", oNpc);
         _inst.npc_id       = _dado.id;        // <- aqui o corpo recebe a alma????
         _inst.sprite_index = _dado.sprite;
-		_inst.talk         = _dado.talk; // esse talk existe temporáriamente, depois tirar
+		
 		
 		var interaction_zone = instance_create_layer(
 			_pos.x,
