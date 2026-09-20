@@ -2,6 +2,7 @@ gpu_set_texfilter(false);
 
 move_speed = 3
 direction = 3
+npc_proximo = noone;
 
 // 0 = esquerda
 // 1 = direita

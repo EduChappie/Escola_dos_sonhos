@@ -1,18 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"missionData",
+  "%Name":"objProximo",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"missionData",
+  "name":"objProximo",
   "overriddenProperties":[],
   "parent":{
-    "name":"data",
-    "path":"folders/data.yy",
+    "name":"objs",
+    "path":"folders/objs.yy",
   },
   "parentObjectId":null,
-  "persistent":true,
+  "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
   "physicsFriction":0.2,
@@ -29,7 +29,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"sArea50x",
+    "path":"sprites/sArea50x/sArea50x.yy",
+  },
   "spriteMaskId":null,
-  "visible":false,
+  "visible":true,
 }

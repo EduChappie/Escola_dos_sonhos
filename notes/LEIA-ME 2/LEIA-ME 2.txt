@@ -1,0 +1,6 @@
+aqui fica todos os dados de NPCs do jogo, 
+
+
+### IMPORTANTE ###
+se quiser
+adicionar mais npc, é aqui    ---->

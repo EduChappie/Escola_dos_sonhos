@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"mission_Data",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"mission_Data",
+  "parent":{
+    "name":"data",
+    "path":"folders/data.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

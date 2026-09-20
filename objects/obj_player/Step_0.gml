@@ -55,18 +55,22 @@ if (_hor != 0 or _ver != 0) {
 // repetindo... os sprite tendem a mudar, não temos os corretos tende a mudar
 
 
-//var zona = instance_place(x, y, obj_interacao);
-/* pra que serve isso?
+var id_npc_na_zona = instance_place(x, y, objProximo);
+// pra que serve isso? // kksakdsk lembrei
 
 
-if (zona != noone)
-{
-    npc_proximo = zona.npc;
+if (id_npc_na_zona != noone) {
+	 
+	
+	//show_debug_message(id_npc_na_zona.npc_id);
+	
+	npc_proximo = NPCManager.npc_get(id_npc_na_zona.npc_id);
+	
+	//show_debug_message(npc_proximo.materia);
 	// o player está na zona de interação de um npc
+	
 }
-else
-{
+else {
     npc_proximo = noone;
+	
 }
-*/
-// sobre zona de interação de npc, desnecessário por agora

@@ -1,16 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"NPCData",
-  "eventList":[],
+  "%Name":"oNpc",
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
-  "name":"NPCData",
+  "name":"oNpc",
   "overriddenProperties":[],
   "parent":{
-    "name":"data",
-    "path":"folders/data.yy",
+    "name":"npc",
+    "path":"folders/Sprites/addEdu/npc.yy",
   },
   "parentObjectId":null,
-  "persistent":true,
+  "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
   "physicsFriction":0.2,
@@ -29,5 +31,5 @@
   "solid":false,
   "spriteId":null,
   "spriteMaskId":null,
-  "visible":false,
+  "visible":true,
 }
