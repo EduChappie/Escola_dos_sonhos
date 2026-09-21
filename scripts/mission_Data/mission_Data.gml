@@ -66,7 +66,7 @@ function mission_Data(){
 			texto_aguardando: "Já foi buscar o giz?",
 			texto_entrega: "Perfeito, obrigado!",
 			
-			ponto_busca: { sala: "almoxarifado", x: 71, y: 601, w: 153, h: 649 },
+			ponto_busca: { sala: "almoxarifado", x: 71, y: 601, w: 50, h: 50 },
 			
 			efeito_entrega: { felicidade: +2, infraestrutra: +5 },
 			

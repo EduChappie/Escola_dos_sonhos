@@ -30,8 +30,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sArea50x",
-    "path":"sprites/sArea50x/sArea50x.yy",
+    "name":"sArea60x50",
+    "path":"sprites/sArea60x50/sArea60x50.yy",
   },
   "spriteMaskId":null,
   "visible":true,

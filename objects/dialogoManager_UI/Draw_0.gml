@@ -27,5 +27,6 @@ if (_missao_no_ponto != undefined) {
     var _md = missionManager.mission_data_get(_missao_no_ponto.mission_id);
     var _p = _md.ponto_busca;
     
-    draw_sprite(sArea50x, 0, _p.x + _p.w/2, _p.y - 10);  // balão em cima da zona
+    draw_sprite(sArea50x, 0, _p.x, _p.y);  // balão em cima da zona
+	
 }
