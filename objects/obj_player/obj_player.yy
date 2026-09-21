@@ -11,8 +11,8 @@
   "name":"obj_player",
   "overriddenProperties":[],
   "parent":{
-    "name":"player",
-    "path":"folders/Sprites/addEdu/player.yy",
+    "name":"objs",
+    "path":"folders/objs.yy",
   },
   "parentObjectId":null,
   "persistent":false,

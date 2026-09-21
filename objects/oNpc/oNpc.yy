@@ -8,8 +8,8 @@
   "name":"oNpc",
   "overriddenProperties":[],
   "parent":{
-    "name":"npc",
-    "path":"folders/Sprites/addEdu/npc.yy",
+    "name":"objs",
+    "path":"folders/objs.yy",
   },
   "parentObjectId":null,
   "persistent":false,

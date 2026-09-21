@@ -3,8 +3,8 @@
   "%Name":"leia-me",
   "name":"leia-me",
   "parent":{
-    "name":"addEdu",
-    "path":"folders/Sprites/addEdu.yy",
+    "name":"sets",
+    "path":"folders/Sprites/sets.yy",
   },
   "resourceType":"GMNotes",
   "resourceVersion":"2.0",

@@ -5,7 +5,7 @@ function npc_catalog() {
             nome: "Sr. Gilson",
             tipo: "professor",
             materia: "Quimica",
-            sprite: sNPC_front_idle,
+            sprite: sProfessoA1_front_idle,
             afinidade: 0,
 			i: 0,// i referente a interação 0 == nunca interagiram
             agenda_mensal: [
@@ -18,7 +18,7 @@ function npc_catalog() {
             nome: "Sra. Fernanda",
             tipo: "professor",
             materia: "Historia",
-            sprite: sPlayer_front_idle, // trocar depois o sprite, please
+            sprite: sAlunoB1_side_idle, // trocar depois o sprite, please
 			i: 0,
 			afinidade: 0,
             agenda_mensal: [ 
