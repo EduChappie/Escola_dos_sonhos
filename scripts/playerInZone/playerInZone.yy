@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"playerInZone",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"playerInZone",
+  "parent":{
+    "name":"managers",
+    "path":"folders/managers.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
