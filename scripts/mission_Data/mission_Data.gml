@@ -78,7 +78,106 @@ function mission_Data(){
                 {grau: 3, evento_critico: "demitir o professor" }
 			]
         },
-		
+		// missão 3 - A Limpeza e Manutenção (Zelador)
+		{
+            id: "zelador_limpeza_patio",
+            titulo: "A Limpeza e Manutenção",
+            tipo_npc_alvo: "zelador",
+            npc_id_especifico: undefined, //caso a missão não tenha, tipo específico, bote undefined
+            meses_disponiveis: [0],
+            peso_sorteio: 1.0,
+            texto: "Diretor, acumulou muito lixo reciclável no pátio e preciso de ajuda para organizar o descarte correto. Qual desses materiais vai na lixeira AZUL de reciclagem?",
+
+
+			tipo_missao: "dialogo",   // "dialogo" / "busca"
+            tipo_resolucao: "escolha_livre",
+
+
+            opcoes: [
+                { texto: "Não sei, contrate alguém pra resolver! (- R$ 80,00)", efeito: { dinheiro: -80 } },
+
+				{ texto: "Folha de papel usada", correta: true },
+				{ texto: "Restos de comida", correta: false },
+				{ texto: "Pilha usada", correta: false },
+				{ texto: "Vidro quebrado", correta: false },
+
+				{ texto: "Ignorar", efeito: { acao: "fechar" }},
+            ],
+            grau_maximo: 3,
+            penalidade_por_grau: [
+                {grau: 1, satisfacao_alunos: -5 },
+                {grau: 2, satisfacao_professores: -5 },
+                {grau: 3, infraestrutura: -5 }
+			]
+        },
+
+		// missão 4 - O Material Didático de Matemática (Professor)
+		{
+            id: "professor_material_matematica",
+            titulo: "O Material Didático de Matemática",
+            tipo_npc_alvo: "professor",
+            npc_id_especifico: undefined, //caso a missão não tenha, tipo específico, bote undefined
+            meses_disponiveis: [0],
+            peso_sorteio: 1.0,
+            texto: "Diretor, preciso de novos jogos pedagógicos para a aula, mas o orçamento da matéria está curto. Se uma turma tem 32 alunos e serão formados grupos de 4, quantos grupos serão criados?",
+
+
+			tipo_missao: "dialogo",   // "dialogo" / "busca"
+            tipo_resolucao: "escolha_livre",
+
+
+            opcoes: [
+                { texto: "Não sei, tome dinheiro e resolva você mesmo! (- R$ 80,00)", efeito: { dinheiro: -80 } },
+
+				{ texto: "8", correta: true },
+				{ texto: "6", correta: false },
+				{ texto: "7", correta: false },
+				{ texto: "9", correta: false },
+
+				{ texto: "Ignorar", efeito: { acao: "fechar" }},
+            ],
+            grau_maximo: 3,
+            penalidade_por_grau: [
+                {grau: 1, satisfacao_professores: -3 },
+                {grau: 2, desempenho_escolar: -3 },
+                {grau: 3, desempenho_escolar: -5 }
+			]
+        },
+
+		// missão 5 - A Carteira Quebrada na Sala 1 (Estrutura)
+		{
+            id: "estrutura_carteira_quebrada_sala1",
+            titulo: "A Carteira Quebrada na Sala 1",
+            tipo_npc_alvo: "estrutura",
+            npc_id_especifico: undefined, //caso a missão não tenha, tipo específico, bote undefined
+            meses_disponiveis: [0],
+            peso_sorteio: 1.0,
+            texto: "Uma mesa quebrada na sala principal impede um aluno de sentar adequadamente. Qual é a forma correta de lidar com um móvel de madeira quebrado de forma sustentável?",
+
+
+			tipo_missao: "dialogo",   // "dialogo" / "busca"
+            tipo_resolucao: "escolha_livre",
+
+
+            opcoes: [
+                { texto: "Não sei, contrate alguém pra resolver! (- R$ 80,00)", efeito: { dinheiro: -80 } },
+
+				{ texto: "Restaurar/reparar a peça danificada", correta: true },
+				{ texto: "Queimar no pátio", correta: false },
+				{ texto: "Jogar no lixo comum", correta: false },
+				{ texto: "Deixar do jeito que está", correta: false },
+
+				{ texto: "Ignorar", efeito: { acao: "fechar" }},
+            ],
+            grau_maximo: 3,
+            penalidade_por_grau: [
+                {grau: 1, satisfacao_alunos: -5 },
+                {grau: 2, infraestrutura: -5 },
+                {grau: 3, infraestrutura: -8, evento_critico: "mesa permanece visivelmente quebrada" }
+			]
+        },
+
 	]
 }
 
+	
