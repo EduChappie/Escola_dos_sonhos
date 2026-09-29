@@ -19,17 +19,17 @@ function mission_Data(){
             opcoes: [
                 { texto: "Não sei, tome dinheiro e descubra! (- R$ 150,00)", efeito: { dinheiro: -150 } },
                 
-				{ texto: "H20", correta: true },
-				{ texto: "HN03", correta: false },
-				{ texto: "H3", correta: false },
-				{ texto: "H2S04", correta: false },
+				{ texto: "H20", correta: true, efeito: { dinheiro: +150} },
+				{ texto: "HN03", correta: false, efeito: { felicidade: -10} },
+				{ texto: "H3", correta: false, efeito: { felicidade: -10} },
+				{ texto: "H2S04", correta: false, efeito: { felicidade: -10} },
 				
 				{ texto: "Ignorar", efeito: { acao: "fechar" }},
             ],
             grau_maximo: 3,
             penalidade_por_grau: [
-                {grau: 1, felicidade: -1 },
-                {grau: 2, ensino: -3 },
+                {grau: 1, felicidade: -20 },
+                {grau: 2, dinheiro: -400 },
                 {grau: 3, evento_critico: "demitir o professor" }
 			]
         },
@@ -50,7 +50,7 @@ function mission_Data(){
 			opcoes_pedido: [
                 { texto: "Não, compre você mesmo! (- R$ 350,00)", efeito: { dinheiro: -150 }, resolver_direto: true },
                 
-				{ texto: "Deixa isso comigo!", correta: true },
+				{ texto: "Deixa isso comigo!", correta: true, efeito: { felicidade: +2, infraestrutra: +5 } },
 				
 				{ texto: "Deixa pra próxima", efeito: { acao: "fechar" }},
             ],
@@ -68,7 +68,7 @@ function mission_Data(){
 			
 			ponto_busca: { sala: "almoxarifado", x: 71, y: 601, w: 50, h: 50 },
 			
-			efeito_entrega: { felicidade: +2, infraestrutra: +5 },
+			
 			
 			
             grau_maximo: 3,

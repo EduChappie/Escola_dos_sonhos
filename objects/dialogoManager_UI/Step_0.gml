@@ -1,8 +1,5 @@
 
 
-
-
-
 // código para selecionar opção em dia
 if (estado == "texto_simples" && keyboard_check_pressed(vk_space)) {
     fechar();
@@ -44,18 +41,17 @@ else if (estado == "mostrando_opcoes_busca") {
 		show_debug_message(opcao_selecionada)
         var _opcao = _md.opcoes_pedido[opcao_selecionada];
 
-		show_debug_message("==================")
+		show_debug_message("========= escolha =========")
 		show_debug_message(_opcao)
 		show_debug_message("==================")
 		// aqui ele ta comprando a opção
         if (variable_struct_exists(_opcao, "resolver_direto") && _opcao.resolver_direto==1) {
             //stats_aplicar_efeito(_opcao.efeito);
-			show_debug_message("======sdfsd=======")
+			missionManager.tratar_escolha_pedido(_opcao)
             missionManager.mission_resolver_direto(missao_atual.instance_id);
             fechar();
         }
         else if (variable_struct_exists(_opcao, "correta") && _opcao.correta==1) {
-			show_debug_message("======aaaaaaaaaaaaa=======")
 			missionManager.mission_avancar_etapa(missao_atual.instance_id, "buscando")
             estado = "mostrando_texto_busca";
 			fechar()
@@ -64,7 +60,7 @@ else if (estado == "mostrando_opcoes_busca") {
         else {
             fechar();   // "deixa pra próxima" -> só fecha, sem mudar nada
         }
-
+		
         opcao_selecionada = 0;
     }
 }
@@ -91,7 +87,26 @@ if (estado == "mostrando_texto_busca" && keyboard_check_pressed(vk_space)) {
         fechar();   // só fecha, continua esperando ele ir buscar
     }
     else if (missao_atual.etapa == "pronta_para_entregar") {
-        //stats_aplicar_efeito(_md.efeito_entrega);
+		in = missionManager.mission_data_get(missao_atual.mission_id)
+		p = undefined;
+		
+		show_debug_message("===== escolha de entrega =====")
+		show_debug_message(in.opcoes_pedido)
+		show_debug_message("==========")
+		
+		
+		
+		for (var i = 0; i < array_length(in.opcoes_pedido); i++) {
+		
+			if (variable_struct_exists(in.opcoes_pedido[i], "correta") && in.opcoes_pedido[i].correta==1) {
+				
+				p = in.opcoes_pedido[i];
+				break;
+				
+			}
+		}
+		
+		missionManager.tratar_escolha_pedido(p)
 		missionManager.mission_resolver_direto(missao_atual.instance_id);
 		fechar()
         

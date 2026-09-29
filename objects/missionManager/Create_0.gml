@@ -86,6 +86,7 @@ function mission_sortear_para_mes(_mes) {
             npc_id: _npc_id_alvo,
             status: "pendente",
             etapa: "pedido",
+			opc: noone,
             grau_atual: 0,
             mes_criacao: _mes,
             mes_ultima_interacao: _mes
@@ -145,9 +146,36 @@ function mission_resolver(_instance_id, _indice_opcao) {
 				if (_opcao.correta == 1) { // ACERTOU!!
 					show_debug_message("Resposta correta, será realizado alguns efeitos agora")
 					// aí bota a execução de efeitos nos status
+					
+					
+					// se existe o efeito dinheiro, execute o dinheiro
+					if (variable_struct_exists(_opcao.efeito, "dinheiro")) {
+						gameManager.moeda += _opcao.efeito.dinheiro
+					}
+					
+					// se existe o efeito felicidade, execute...
+					if (variable_struct_exists(_opcao.efeito, "felicidade")) {
+						gameManager.felicidade += _opcao.efeito.felicidade
+					}
+					
+					
 				
 				} else { // ERROU!!
 					show_debug_message("Resposta incorreta, perdeu status!")
+					
+					//ok... aqui eu entendi que tem muita redundância, mas foda-se por enquanto
+					// não quero pensar em detalhes, depois arrumo
+					
+					
+					// se existe o efeito dinheiro, execute o dinheiro
+					if (variable_struct_exists(_opcao.efeito, "dinheiro")) {
+						gameManager.moeda += _opcao.efeito.dinheiro
+					}
+					
+					// se existe o efeito felicidade, execute...
+					if (variable_struct_exists(_opcao.efeito, "felicidade")) {
+						gameManager.felicidade += _opcao.efeito.felicidade
+					}
 					
 				}
 				
@@ -156,12 +184,15 @@ function mission_resolver(_instance_id, _indice_opcao) {
 				// se não tem a opção "correta" então deve ter efeito ou ação.
 				show_debug_message(_opcao)
 				
+				// se existe o efeito dinheiro, execute o dinheiro
 				if (variable_struct_exists(_opcao.efeito, "dinheiro")) {
-				
-					// faça ele perder o dinheiro aqui
-					show_debug_message("Você perdeu");
-					show_debug_message(_opcao.efeito.dinheiro);
-				
+					gameManager.moeda += _opcao.efeito.dinheiro
+				}
+					
+				// se existe o efeito felicidade, execute...
+				else if (variable_struct_exists(_opcao.efeito, "felicidade")) {
+					gameManager.felicidade += _opcao.efeito.felicidade
+					
 				} else {
 					
 					dialogoManager_UI.fechar() // bem básico, funciona só pra opção ignorar
@@ -173,7 +204,8 @@ function mission_resolver(_instance_id, _indice_opcao) {
 			}
 			
         }
-
+		
+		statusManager_UI.reset_values()
         _instancia.status = "resolvida";
         array_push(mission_history, _instancia);
         array_delete(_ativas, i, 1);
@@ -188,7 +220,11 @@ function mission_resolver(_instance_id, _indice_opcao) {
 
 
 function mission_resolver_direto(_instance_id) {
+	show_debug_message("Resolvendo direto")
+	show_debug_message(_instance_id)
+	show_debug_message("==================")
     var _ativas = missionManager.active_missions;
+	
     for (var i = 0; i < array_length(_ativas); i++) {
         if (_ativas[i].instance_id != _instance_id) continue;
         _ativas[i].status = "resolvida";
@@ -274,4 +310,32 @@ function mission_verificar_pontos_busca() {
 
 
 function tratar_escolha_pedido(_opcs) {
+	
+	
+	show_debug_message("tratando opção")
+	show_debug_message(_opcs)
+	
+	
+	// *se existe o efeito resolver_direto, execute o resolver*
+	// não precisa verificar resolver_direto aqui, já foi verificado antes
+	// faça somente o tratamento dos efeitos
+	
+	
+	if (variable_struct_exists(_opcs.efeito, "dinheiro")) {
+		
+		gameManager.moeda += _opcs.efeito.dinheiro
+		
+	}
+	if (variable_struct_exists(_opcs.efeito, "felicidade")) {
+		
+		gameManager.felicidade += _opcs.efeito.felicidade
+					
+	}
+	if (variable_struct_exists(_opcs.efeito, "infraestrutura")) {
+		
+		gameManager.infraestrutura += _opcs.efeito.infraestrutura
+					
+	}
+	
+	statusManager_UI.reset_values()
 }
