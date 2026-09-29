@@ -46,7 +46,7 @@
   "origin":4,
   "parent":{
     "name":"professorA1",
-    "path":"folders/Sprites/addEdu/npc/professorA1.yy",
+    "path":"folders/Sprites/npc/professorA1.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

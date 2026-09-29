@@ -96,10 +96,10 @@ function mission_Data(){
             opcoes: [
                 { texto: "Não sei, contrate alguém pra resolver! (- R$ 80,00)", efeito: { dinheiro: -80 } },
 
-				{ texto: "Folha de papel usada", correta: true },
-				{ texto: "Restos de comida", correta: false },
-				{ texto: "Pilha usada", correta: false },
-				{ texto: "Vidro quebrado", correta: false },
+				{ texto: "Folha de papel usada", correta: true,  efeito: {dinheiro: +80} },
+				{ texto: "Restos de comida", correta: false,     efeito: {dinheiro: -120} },
+				{ texto: "Pilha usada", correta: false,          efeito: {dinheiro: -120} },
+				{ texto: "Vidro quebrado", correta: false,       efeito: {dinheiro: -120} },
 
 				{ texto: "Ignorar", efeito: { acao: "fechar" }},
             ],
@@ -129,10 +129,10 @@ function mission_Data(){
             opcoes: [
                 { texto: "Não sei, tome dinheiro e resolva você mesmo! (- R$ 80,00)", efeito: { dinheiro: -80 } },
 
-				{ texto: "8", correta: true },
-				{ texto: "6", correta: false },
-				{ texto: "7", correta: false },
-				{ texto: "9", correta: false },
+				{ texto: "8", correta: true,  efeito: {dinheiro: +80}  },
+				{ texto: "6", correta: false, efeito: {dinheiro: -120} },
+				{ texto: "7", correta: false, efeito: {dinheiro: -120}  },
+				{ texto: "9", correta: false, efeito: {dinheiro: -120}  },
 
 				{ texto: "Ignorar", efeito: { acao: "fechar" }},
             ],
@@ -162,10 +162,10 @@ function mission_Data(){
             opcoes: [
                 { texto: "Não sei, contrate alguém pra resolver! (- R$ 80,00)", efeito: { dinheiro: -80 } },
 
-				{ texto: "Restaurar/reparar a peça danificada", correta: true },
-				{ texto: "Queimar no pátio", correta: false },
-				{ texto: "Jogar no lixo comum", correta: false },
-				{ texto: "Deixar do jeito que está", correta: false },
+				{ texto: "Restaurar/reparar a peça danificada", correta: true,  efeito: {dinheiro: +80}  },
+				{ texto: "Queimar no pátio", correta: false, efeito: {dinheiro: -120}  },
+				{ texto: "Jogar no lixo comum", correta: false, efeito: {dinheiro: -120}  },
+				{ texto: "Deixar do jeito que está", correta: false, efeito: {dinheiro: -120}  },
 
 				{ texto: "Ignorar", efeito: { acao: "fechar" }},
             ],

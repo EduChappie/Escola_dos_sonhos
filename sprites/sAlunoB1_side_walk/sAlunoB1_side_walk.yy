@@ -32,7 +32,7 @@
   "origin":4,
   "parent":{
     "name":"alunoB1",
-    "path":"folders/Sprites/addEdu/npc/alunoB1.yy",
+    "path":"folders/Sprites/npc/alunoB1.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -24,6 +24,19 @@ function npc_catalog() {
             agenda_mensal: [ 
 				{ mes: 0,  sala: "sala_artes",  x: 500, y: 550 },
 			]
-        }
+        },
+		{
+            id: "Zelador Rodrigo",           // <- é ASSIM que você se refere a ele. Sempre.
+            nome: "Sr. Rodrigo",
+            tipo: "zelador",
+            materia: undefined,
+            sprite: sAlunoA1_down_idle,
+            afinidade: 0,
+			i: 0,                         // i referente a interação 0 == nunca interagiram
+            agenda_mensal: [
+                { mes: 0,  sala: "sala_01",  x: 760, y: 716 },
+                // ... até 12
+            ]
+        },
     ];
 }
