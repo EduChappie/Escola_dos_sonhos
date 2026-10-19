@@ -6,8 +6,8 @@ depth = -100
 space = [0, 2, 0]
 
 // tempo de passagem do mês
-pmin = 5
-psec = 10
+pmin = 60
+psec = 0
 pmil = 0
 
 // começa a contagem

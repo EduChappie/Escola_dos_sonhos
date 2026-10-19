@@ -53,3 +53,19 @@ function escolher_opcao(_indice) {
     missionManager.mission_resolver(missao_atual.instance_id, _indice);
     fechar();
 }
+
+
+function draw_caixa_base() {
+    var _gw = display_get_gui_width();
+    var _gh = display_get_gui_height();
+
+    var _largura = _gw * 0.6;      // 60% da largura da tela
+    var _altura  = 210;            // altura fixa, enxuta
+    var _x = (_gw - _largura) / 2; // centralizada
+    var _y = _gh - _altura - 200;   // colada embaixo, com margem
+
+    draw_sprite_stretched(spr_caixa_dialogo, 0, _x, _y, _largura, _altura);
+
+    // devolve a área útil pro texto usar
+    return { x: _x, y: _y, w: _largura, h: _altura };
+}

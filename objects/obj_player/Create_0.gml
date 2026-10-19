@@ -16,3 +16,8 @@ npc_proximo = noone;
 tilemap = layer_tilemap_get_id("paredes")
 //block = layer_tilemap_get_id("collisionBlock")
 
+
+function resetPosition() {
+	x = 682
+	y = 927
+}

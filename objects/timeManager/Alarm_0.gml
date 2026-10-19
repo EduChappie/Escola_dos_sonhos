@@ -23,13 +23,8 @@ if!(t_sec = 0 && t_min = 0 && t_mil = 0){
 	/// == por favor, lembrar de alterar toda essa função,
 	///   isso não é responsabilidade de time_manger
 	if (gameManager.mes_atual < 11) {
-		gameManager.mes_atual +=1
-		statusManager_UI.reset_values()
-		show_debug_message("Passou o mês")
-		show_debug_message(gameManager.mes_atual)
 		
-		// fazer player voltar pra posição
-		//oPlayer.reset_month()
+		gameManager.novoMes()
 		
 	} else {
 		show_debug_message("Fim de jogo")

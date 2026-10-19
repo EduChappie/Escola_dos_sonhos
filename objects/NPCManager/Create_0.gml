@@ -25,23 +25,40 @@ function npc_posicao_no_mes(_dado, _mes) {
     for (var i = 0; i < array_length(_dado.agenda_mensal); i++) {
         if (_dado.agenda_mensal[i].mes == _mes) return _dado.agenda_mensal[i];
     }
-    return _dado.agenda_mensal[0];            // fallback
+    return undefined; // fallback
 }
 
 
 
+function npc_remover_atuais() {
+    var _ids = variable_struct_get_names(instancias);
 
+    for (var i = 0; i < array_length(_ids); i++) {
+        var _id = _ids[i];
+        var _inst = instancias[$ _id];
+
+        if (instance_exists(_inst)) {
+            instance_destroy(_inst);
+        }
+    }
+
+    instancias = {};
+}
 
 
 
 function npc_posicionar(_mes) {
-	 var _ids = variable_struct_get_names(npcs);
+	
+	npc_remover_atuais()
+	var _ids = variable_struct_get_names(npcs);
 	 
-	 for (var i = 0; i < array_length(_ids); i++) {
-        var _dado = npcs[$ _ids[i]];
-        var _pos  = npc_posicao_no_mes(_dado, _mes);
+	for (var i = 0; i < array_length(_ids); i++) {
+		var _dado = npcs[$ _ids[i]];
+		var _pos  = npc_posicao_no_mes(_dado, _mes);
+		
+		if (_pos == undefined) continue;
 
-        var _inst = instance_create_layer(_pos.x, _pos.y, "Instances", oNpc);
+		var _inst = instance_create_layer(_pos.x, _pos.y, "Instances", oNpc);
         _inst.npc_id       = _dado.id;        // <- aqui o corpo recebe a alma????
         _inst.sprite_index = _dado.sprite;
 		
