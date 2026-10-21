@@ -48,7 +48,7 @@ function mission_Data(){
 			
 			
 			opcoes_pedido: [
-                { texto: "Não, compre você mesmo! (- R$ 350,00)", efeito: { dinheiro: -150 }, resolver_direto: true },
+                { texto: "Não, compre você mesmo! (- R$ 350,00)", efeito: { dinheiro: -350 }, resolver_direto: true },
                 
 				{ texto: "Deixa isso comigo!", correta: true, efeito: { felicidade: +2, infraestrutra: +5 } },
 				

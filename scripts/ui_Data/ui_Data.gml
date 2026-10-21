@@ -22,11 +22,19 @@ function ui_Data() {
 	
 		},
 		{
-			nome: "felicidade",
-			x: 150,
+			nome: "felicidade_alunos",
+			x: 200,
 			y: 50,
 			color: c_white,
-			value: "Happy: "+string(gameManager.felicidade)
+			value: "Satisfação Alunos: "+string(gameManager.felicidade_alunos)
+	
+		},
+		{
+			nome: "felicidade_professor",
+			x: 200,
+			y: 75,
+			color: c_white,
+			value: "Satisfação Professores: "+string(gameManager.felicidade_professor)
 	
 		},
 		

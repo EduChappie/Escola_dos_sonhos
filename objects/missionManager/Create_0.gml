@@ -50,6 +50,7 @@ function mission_sortear_para_mes(_mes) {
         var _md = _catalogo[i];
 
         show_debug_message("--- avaliando missão: " + _md.id);
+		
 
         // filtro 1: mês certo
         if (_md.meses_disponiveis != undefined
@@ -71,6 +72,7 @@ function mission_sortear_para_mes(_mes) {
                 continue;
             }
         }
+		
 
         // filtro 3
         if (mission_ja_ativa(_npc_id_alvo, _md.id)) {

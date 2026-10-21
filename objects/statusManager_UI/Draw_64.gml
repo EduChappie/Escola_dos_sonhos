@@ -15,8 +15,9 @@ for (i = 0; i < array_length(ui); i++) {
 		)
 		
 	} else {
-		//ÁREA SPRITE não EXISTE
-		draw_set_colour(item.color);
+		
+		draw_set_colour(item.color)
+		
 		draw_text(item.x, item.y, item.value)
 	}
 	

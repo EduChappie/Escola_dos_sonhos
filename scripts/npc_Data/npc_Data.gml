@@ -9,20 +9,20 @@ function npc_catalog() {
             afinidade: 0,
 			i: 0,// i referente a interação 0 == nunca interagiram
             agenda_mensal: [
-                { mes: 0,  sala: "sala_artes",  x: 572, y: 604 },
+                { mes: 0,  sala: "sala_artes",  x: 991, y: 509 },
                 // ... até 12
             ]
         },
         {
-            id: "prof_fernanda",
-            nome: "Sra. Fernanda",
+            id: "prof_Joaquim",
+            nome: "Sr. Joaquim",
             tipo: "professor",
             materia: "Historia",
-            sprite: sAlunoB1_side_idle, // trocar depois o sprite, please
+            sprite: sProfessoB1_front_idle, // trocar depois o sprite, please
 			i: 0,
 			afinidade: 0,
             agenda_mensal: [ 
-				{ mes: 0,  sala: "sala_artes",  x: 500, y: 550 },
+				{ mes: 0,  sala: "sala_artes",  x: 1001, y: 769 },
 			]
         },
 		{
@@ -34,7 +34,33 @@ function npc_catalog() {
             afinidade: 0,
 			i: 0,                         // i referente a interação 0 == nunca interagiram
             agenda_mensal: [
-                { mes: 0,  sala: "sala_01",  x: 760, y: 716 },
+                { mes: 0,  sala: "sala_01",  x: 480, y: 617 },
+                // ... até 12
+            ]
+        },
+		{
+            id: "aluno a1",           // <- é ASSIM que você se refere a ele. Sempre.
+            nome: "Sr. Michael",
+            tipo: "aluno",
+            materia: undefined,
+            sprite: sAlunoA1_front_idle,
+            afinidade: 0,
+			i: 0,                         // i referente a interação 0 == nunca interagiram
+            agenda_mensal: [
+                { mes: 0,  sala: "sala_01",  x: 1061, y: 190 },
+                // ... até 12
+            ]
+        },
+		{
+            id: "aluno a2",           // <- é ASSIM que você se refere a ele. Sempre.
+            nome: "Sr. Cammy",
+            tipo: "aluno",
+            materia: undefined,
+            sprite: sAlunoB1_front_idle,
+            afinidade: 0,
+			i: 0,                         // i referente a interação 0 == nunca interagiram
+            agenda_mensal: [
+                { mes: 0,  sala: "sala_01",  x: 583, y: 287 },
                 // ... até 12
             ]
         },

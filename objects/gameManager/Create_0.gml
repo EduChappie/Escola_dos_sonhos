@@ -17,8 +17,10 @@ meses = [
 
 mes_atual = 0;
 infraestrutura = 0;
-felicidade = 50;
-moeda = 1200;
+
+felicidade_alunos = 50;
+felicidade_professor = 50;
+moeda = 500;
 
 
 
