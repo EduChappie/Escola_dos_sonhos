@@ -1,4 +1,4 @@
-
+draw_set_font(font_normal)
 
 for (i = 0; i < array_length(ui); i++) {
 	item = ui[i]

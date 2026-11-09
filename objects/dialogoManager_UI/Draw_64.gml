@@ -101,3 +101,12 @@ else if (estado == "mostrando_opcoes_busca") {
     }
     draw_set_color(c_white);
 }
+
+
+if (aviso_timer > 0) {
+    draw_set_halign(fa_center);
+    draw_set_color(c_red);
+    draw_text(display_get_gui_width() / 2, 60, aviso);
+    draw_set_halign(fa_left);
+    draw_set_color(c_white);
+}

@@ -1,4 +1,11 @@
 
+missoes_por_mes = 4;   // máximo de missões novas por mês (ajuste à vontade)
+modo_teste = true;
+missoes_vistas = [];
+proximo_id = 0;        // contador para IDs únicos
+
+
+
 mission_catalog = mission_Data();
 active_missions = [];
 mission_history = [];
@@ -18,7 +25,6 @@ function mission_data_get(_mission_id) {
 
 
 
-
 // verificar se NPC tem missão pendente
 // pra mostrar balão de fala, por exemplo
 function missao_pendente_de(_npc_id) {
@@ -32,192 +38,6 @@ function missao_pendente_de(_npc_id) {
     }
     return undefined;
 }
-
-
-
-
-
-
-
-
-
-
-// sortear as missões para o próximo mês
-function mission_sortear_para_mes(_mes) {
-    var _catalogo = mission_catalog;
-
-    for (var i = 0; i < array_length(_catalogo); i++) {
-        var _md = _catalogo[i];
-
-        show_debug_message("--- avaliando missão: " + _md.id);
-		
-
-        // filtro 1: mês certo
-        if (_md.meses_disponiveis != undefined
-        && !array_contains(_md.meses_disponiveis, _mes)) {
-            show_debug_message("  -> BARRADA no filtro de mês. meses_disponiveis=" + string(_md.meses_disponiveis) + " mes_atual=" + string(_mes));
-            continue;
-        }
-
-        // filtro 2: define o alvo
-        var _npc_id_alvo;
-        if (_md.npc_id_especifico != undefined) {
-            _npc_id_alvo = _md.npc_id_especifico;
-            show_debug_message("  -> alvo específico: " + _npc_id_alvo);
-        } else {
-            _npc_id_alvo = NPCManager.npc_sortear_por_tipo(_md.tipo_npc_alvo);
-            show_debug_message("  -> sorteado por tipo (" + _md.tipo_npc_alvo + "): " + string(_npc_id_alvo));
-            if (_npc_id_alvo == undefined) {
-                show_debug_message("  -> BARRADA: sorteio não achou ninguém");
-                continue;
-            }
-        }
-		
-
-        // filtro 3
-        if (mission_ja_ativa(_npc_id_alvo, _md.id)) {
-            show_debug_message("  -> BARRADA: já ativa para esse NPC");
-            continue;
-        }
-
-        show_debug_message("  -> CRIADA para " + _npc_id_alvo);
-
-        var _instancia = {
-            instance_id: string(irandom(999999)) + "_" + _md.id,
-            mission_id: _md.id,
-            npc_id: _npc_id_alvo,
-            status: "pendente",
-            etapa: "pedido",
-			opc: noone,
-            grau_atual: 0,
-            mes_criacao: _mes,
-            mes_ultima_interacao: _mes
-        };
-
-        array_push(active_missions, _instancia);
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-// verificar se uma missão já não está ativa, para a aleatoriedade
-function mission_ja_ativa(_npc_id, _mission_id) {
-	
-    var _ativas = active_missions;
-    for (var i = 0; i < array_length(_ativas); i++) {
-        if (_ativas[i].npc_id == _npc_id
-        && _ativas[i].mission_id == _mission_id
-        && _ativas[i].status == "pendente") return true;
-    }
-    return false;
-}
-
-
-
-
-
-
-// função de resolve  missão com base na escolha do player
-// não sei como mexer ainda, verificar depois
-function mission_resolver(_instance_id, _indice_opcao) {
-    var _ativas = active_missions;
-	show_debug_message("resolver chamado")
-
-    for (var i = 0; i < array_length(_ativas); i++) {
-        if (_ativas[i].instance_id != _instance_id) continue;
-
-        var _instancia = _ativas[i];
-        var _md = mission_data_get(_instancia.mission_id);
-        var _opcao = _md.opcoes[_indice_opcao];
-
-		
-        if (_md.tipo_resolucao == "escolha_livre") {
-            
-			if (variable_struct_exists(_opcao, "correta")) {
-				
-				if (_opcao.correta == 1) { // ACERTOU!!
-					show_debug_message("Resposta correta, será realizado alguns efeitos agora")
-					// aí bota a execução de efeitos nos status
-					
-					
-					// se existe o efeito dinheiro, execute o dinheiro
-					if (variable_struct_exists(_opcao.efeito, "dinheiro")) {
-						gameManager.moeda += _opcao.efeito.dinheiro
-					}
-					
-					// se existe o efeito felicidade, execute...
-					if (variable_struct_exists(_opcao.efeito, "felicidade")) {
-						gameManager.felicidade += _opcao.efeito.felicidade
-					}
-					
-					
-				
-				} else { // ERROU!!
-					show_debug_message("Resposta incorreta, perdeu status!")
-					
-					//ok... aqui eu entendi que tem muita redundância, mas foda-se por enquanto
-					// não quero pensar em detalhes, depois arrumo
-					
-					
-					// se existe o efeito dinheiro, execute o dinheiro
-					if (variable_struct_exists(_opcao.efeito, "dinheiro")) {
-						gameManager.moeda += _opcao.efeito.dinheiro
-					}
-					
-					// se existe o efeito felicidade, execute...
-					if (variable_struct_exists(_opcao.efeito, "felicidade")) {
-						gameManager.felicidade += _opcao.efeito.felicidade
-					}
-					
-				}
-				
-				
-			} else { // OPÇÃO ALTERNATICA
-				// se não tem a opção "correta" então deve ter efeito ou ação.
-				show_debug_message(_opcao)
-				
-				// se existe o efeito dinheiro, execute o dinheiro
-				if (variable_struct_exists(_opcao.efeito, "dinheiro")) {
-					gameManager.moeda += _opcao.efeito.dinheiro
-				}
-					
-				// se existe o efeito felicidade, execute...
-				else if (variable_struct_exists(_opcao.efeito, "felicidade")) {
-					gameManager.felicidade += _opcao.efeito.felicidade
-					
-				} else {
-					
-					dialogoManager_UI.fechar() // bem básico, funciona só pra opção ignorar
-					dialogoManager_UI.opcao_selecionada = 0
-					break;
-				}// adicionar sobre os outros status depois, posso até levar pro gameManager
-				
-				
-			}
-			
-        }
-		
-		statusManager_UI.reset_values()
-        _instancia.status = "resolvida";
-        array_push(mission_history, _instancia);
-        array_delete(_ativas, i, 1);
-		dialogoManager_UI.opcao_selecionada = 0
-        return;
-    }
-}
-
-
-
 
 
 
@@ -238,42 +58,6 @@ function mission_resolver_direto(_instance_id) {
 
 
 
-
-
-
-
-// processar postergação de missão em passagem de mês
-function mission_processar_fim_de_mes(_mes_atual) {
-    var _ativas = active_missions;
-
-    // varre de trás pra frente porque vamos remover itens durante o loop
-    for (var i = array_length(_ativas) - 1; i >= 0; i--) {
-        var _instancia = _ativas[i];
-        if (_instancia.status != "pendente") continue;
-
-        var _md = mission_data_get(_instancia.mission_id);
-        _instancia.grau_atual += 1;
-
-        var _penalidade = _md.penalidade_por_grau[$ string(_instancia.grau_atual)];
-        if (_penalidade != undefined) {
-            stats_aplicar_efeito(_penalidade);
-        }
-
-        if (_instancia.grau_atual >= _md.grau_maximo) {
-            _instancia.status = "expirada";
-            array_push(mission_history, _instancia);
-            array_delete(_ativas, i, 1);
-        }
-    }
-
-    mission_sortear_para_mes(_mes_atual + 1);
-}
-
-
-
-
-
-
 function mission_avancar_etapa(_instance_id, _nova_etapa) {
     var _ativas = missionManager.active_missions;
     for (var i = 0; i < array_length(_ativas); i++) {
@@ -283,9 +67,6 @@ function mission_avancar_etapa(_instance_id, _nova_etapa) {
         }
     }
 }
-
-
-
 
 
 
@@ -308,36 +89,250 @@ function mission_verificar_pontos_busca() {
 }
 
 
+// ===== CONSULTAS =====
+
+// o NPC já tem alguma missão pendente? (regra: 1 missão por NPC)
+function npc_tem_missao(_npc_id) {
+    for (var i = 0; i < array_length(active_missions); i++) {
+        if (active_missions[i].npc_id == _npc_id
+        && active_missions[i].status == "pendente") return true;
+    }
+    return false;
+}
 
 
+
+
+// a missão já está ativa ou já foi feita? (evita repetir)
+function mission_id_em_uso(_mission_id) {
+    for (var i = 0; i < array_length(active_missions); i++) {
+        if (active_missions[i].mission_id == _mission_id) return true;
+    }
+    for (var i = 0; i < array_length(mission_history); i++) {
+        if (mission_history[i].mission_id == _mission_id) return true;
+    }
+    return false;
+}
+
+
+
+
+
+
+// ===== SORTEIO =====
+
+
+// sorteio ponderado por peso_sorteio (devolve o índice sorteado)
+function mission_sortear_indice(_lista) {
+    var _total = 0;
+    for (var i = 0; i < array_length(_lista); i++) {
+        _total += _lista[i][$ "peso_sorteio"] ?? 1;
+    }
+    var _r = random(_total);
+    var _acc = 0;
+    for (var i = 0; i < array_length(_lista); i++) {
+        _acc += _lista[i][$ "peso_sorteio"] ?? 1;
+        if (_r < _acc) return i;
+    }
+    return array_length(_lista) - 1;
+}
+
+// a missão serve para esse NPC?
+function mission_compativel(_md, _dado, _mes) {
+    // filtro de mês (ignorado no modo teste)
+    if (!modo_teste
+    && _md.meses_disponiveis != undefined
+    && !array_contains(_md.meses_disponiveis, _mes)) return false;
+
+    // já está ativa em outro NPC
+    if (mission_id_em_uso(_md.id)) return false;
+
+    // missão com NPC fixo: só serve para ele
+    if (_md.npc_id_especifico != undefined) return (_md.npc_id_especifico == _dado.id);
+
+    // missão por tipo
+    return (_md.tipo_npc_alvo == "qualquer" || _md.tipo_npc_alvo == _dado.tipo);
+}
+
+function mission_sortear_para_mes(_mes) {
+
+    // 1) NPCs que estão na cena neste mês e ainda sem missão
+    var _livres = [];
+    var _ids = variable_struct_get_names(NPCManager.npcs);
+    for (var i = 0; i < array_length(_ids); i++) {
+        var _dado = NPCManager.npcs[$ _ids[i]];
+        if (NPCManager.npc_posicao_no_mes(_dado, _mes) == undefined) continue;  // não está na cena
+        if (npc_tem_missao(_dado.id)) continue;                                  // já tem missão
+        array_push(_livres, _dado);
+    }
+
+    // 2) embaralha, para cada mês começar por NPCs diferentes
+    for (var i = array_length(_livres) - 1; i > 0; i--) {
+        var _j = irandom(i);
+        var _tmp = _livres[i];
+        _livres[i] = _livres[_j];
+        _livres[_j] = _tmp;
+    }
+
+    // 3) para cada NPC, sorteia uma missão compatível
+    var _criadas = 0;
+    for (var n = 0; n < array_length(_livres); n++) {
+        if (_criadas >= missoes_por_mes) break;
+        var _dado = _livres[n];
+
+        // missões compatíveis com ele
+        var _compat = [];
+        for (var i = 0; i < array_length(mission_catalog); i++) {
+            if (mission_compativel(mission_catalog[i], _dado, _mes)) {
+                array_push(_compat, mission_catalog[i]);
+            }
+        }
+        if (array_length(_compat) == 0) {
+            show_debug_message("  " + _dado.id + " (" + string(_dado.tipo) + "): nenhuma missão compatível");
+            continue;
+        }
+
+        // prioriza as que ainda não apareceram nesta partida
+        var _novas = [];
+        for (var i = 0; i < array_length(_compat); i++) {
+            if (!array_contains(missoes_vistas, _compat[i].id)) array_push(_novas, _compat[i]);
+        }
+        if (array_length(_novas) == 0) _novas = _compat;
+
+        var _md = _novas[mission_sortear_indice(_novas)];
+
+        proximo_id += 1;
+        array_push(active_missions, {
+            instance_id: string(proximo_id) + "_" + _md.id,
+            mission_id: _md.id,
+            npc_id: _dado.id,
+            status: "pendente",
+            etapa: "pedido",
+            opc: noone,
+            grau_atual: 0,
+            mes_criacao: _mes,
+            mes_ultima_interacao: _mes
+        });
+        array_push(missoes_vistas, _md.id);
+        _criadas += 1;
+
+        show_debug_message("Missão " + _md.id + " -> " + _dado.id);
+    }
+}
+
+// roda uma vez: avisa quais missões apontam para NPC que não existe
+function mission_validar_catalogo() {
+    for (var i = 0; i < array_length(mission_catalog); i++) {
+        var _md = mission_catalog[i];
+        if (_md.npc_id_especifico != undefined
+        && NPCManager.npc_get(_md.npc_id_especifico) == undefined) {
+            show_debug_message("AVISO: missão '" + _md.id + "' aponta para NPC inexistente: " + _md.npc_id_especifico);
+        }
+    }
+}
+
+
+
+
+
+// ===== RESOLUÇÃO (DIÁLOGO) =====
+
+function mission_resolver(_instance_id, _indice_opcao) {
+    for (var i = 0; i < array_length(active_missions); i++) {
+        if (active_missions[i].instance_id != _instance_id) continue;
+
+        var _instancia = active_missions[i];
+        var _md = mission_data_get(_instancia.mission_id);
+        var _opcao = _md.opcoes[_indice_opcao];
+        var _efeito = _opcao[$ "efeito"];
+
+        // opção "Ignorar": só fecha, a missão continua pendente
+        if (_efeito != undefined && variable_struct_exists(_efeito, "acao") && _efeito.acao == "fechar") {
+            dialogoManager_UI.opcao_selecionada = 0;
+            return true;   // o diálogo fecha, a missão continua pendente
+        }
+
+        // opção de "pagar para resolver": precisa ter o dinheiro
+        if (!variable_struct_exists(_opcao, "correta") && !gameManager.pode_pagar(_efeito)) {
+            dialogoManager_UI.mostrar_aviso("Dinheiro insuficiente!");
+            return false;   // nada muda, diálogo continua aberto
+        }
+
+        // acertou, errou ou opção paga: aplica o efeito
+        gameManager.aplicar_efeito(_efeito);
+
+        statusManager_UI.reset_values();
+        _instancia.status = "resolvida";
+        array_push(mission_history, _instancia);
+        array_delete(active_missions, i, 1);
+        dialogoManager_UI.opcao_selecionada = 0;
+        return true;
+    }
+    return false;
+}
+
+
+
+
+
+
+// ===== RESOLUÇÃO (BUSCA) =====
 
 function tratar_escolha_pedido(_opcs) {
-	
-	
-	show_debug_message("tratando opção")
-	show_debug_message(_opcs)
-	
-	
-	// *se existe o efeito resolver_direto, execute o resolver*
-	// não precisa verificar resolver_direto aqui, já foi verificado antes
-	// faça somente o tratamento dos efeitos
-	
-	
-	if (variable_struct_exists(_opcs.efeito, "dinheiro")) {
-		
-		gameManager.moeda += _opcs.efeito.dinheiro
-		
-	}
-	if (variable_struct_exists(_opcs.efeito, "felicidade")) {
-		
-		gameManager.felicidade += _opcs.efeito.felicidade
-					
-	}
-	if (variable_struct_exists(_opcs.efeito, "infraestrutura")) {
-		
-		gameManager.infraestrutura += _opcs.efeito.infraestrutura
-					
-	}
-	
-	statusManager_UI.reset_values()
+    if (_opcs == undefined) return;
+    gameManager.aplicar_efeito(_opcs[$ "efeito"]);
+    statusManager_UI.reset_values();
 }
+
+
+
+
+
+
+
+
+
+
+// ===== FIM DE MÊS =====
+
+// acha a penalidade de um grau dentro do array
+function mission_penalidade_do_grau(_md, _grau) {
+    for (var j = 0; j < array_length(_md.penalidade_por_grau); j++) {
+        if (_md.penalidade_por_grau[j].grau == _grau) return _md.penalidade_por_grau[j];
+    }
+    return undefined;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// agora só aplica penalidades. Quem sorteia o próximo mês é o gameManager.reset()
+function mission_processar_fim_de_mes() {
+    // de trás pra frente, porque removemos itens durante o loop
+    for (var i = array_length(active_missions) - 1; i >= 0; i--) {
+        var _instancia = active_missions[i];
+        if (_instancia.status != "pendente") continue;
+
+        var _md = mission_data_get(_instancia.mission_id);
+        _instancia.grau_atual += 1;
+
+        gameManager.aplicar_efeito(mission_penalidade_do_grau(_md, _instancia.grau_atual));
+
+        if (_instancia.grau_atual >= _md.grau_maximo) {
+            _instancia.status = "expirada";
+            array_push(mission_history, _instancia);
+            array_delete(active_missions, i, 1);
+        }
+    }
+    statusManager_UI.reset_values();
+}
+
+

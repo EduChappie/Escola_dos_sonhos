@@ -3,6 +3,10 @@ missao_atual = undefined; // guarda a MissionInstance que está sendo exibida
 opcao_selecionada = 0;
 npc_da_conversa = noone;
 
+aviso = "";
+aviso_timer = 0;
+
+
 
 // variável do balão
 ballon = ballon_talking
@@ -68,4 +72,14 @@ function draw_caixa_base() {
 
     // devolve a área útil pro texto usar
     return { x: _x, y: _y, w: _largura, h: _altura };
+}
+
+
+
+
+
+
+function mostrar_aviso(_texto) {
+    aviso = _texto;
+    aviso_timer = 120;   // ~2 segundos a 60 fps
 }

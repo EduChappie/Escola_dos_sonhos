@@ -1,4 +1,5 @@
 
+if (aviso_timer > 0) aviso_timer--;
 
 // código para selecionar opção em dia
 if (estado == "texto_simples" && keyboard_check_pressed(vk_space)) {
@@ -38,31 +39,28 @@ else if (estado == "mostrando_opcoes_busca") {
 
 	// tratamento após escolhas - ta errado, isso aqui é no mission manager
     if (keyboard_check_pressed(vk_enter)) {
-		show_debug_message(opcao_selecionada)
-        var _opcao = _md.opcoes_pedido[opcao_selecionada];
+	    var _opcao = _md.opcoes_pedido[opcao_selecionada];
 
-		show_debug_message("========= escolha =========")
-		show_debug_message(_opcao)
-		show_debug_message("==================")
-		// aqui ele ta comprando a opção
-        if (variable_struct_exists(_opcao, "resolver_direto") && _opcao.resolver_direto==1) {
-            //stats_aplicar_efeito(_opcao.efeito);
-			missionManager.tratar_escolha_pedido(_opcao)
-            missionManager.mission_resolver_direto(missao_atual.instance_id);
-            fechar();
-        }
-        else if (variable_struct_exists(_opcao, "correta") && _opcao.correta==1) {
-			missionManager.mission_avancar_etapa(missao_atual.instance_id, "buscando")
-            estado = "mostrando_texto_busca";
-			fechar()
-			
-        }
-        else {
-            fechar();   // "deixa pra próxima" -> só fecha, sem mudar nada
-        }
-		
-        opcao_selecionada = 0;
-    }
+	    if (variable_struct_exists(_opcao, "resolver_direto") && _opcao.resolver_direto == 1) {
+	        if (!gameManager.pode_pagar(_opcao[$ "efeito"])) {
+	            mostrar_aviso("Dinheiro insuficiente!");   // não fecha, não resolve
+	        } else {
+	            missionManager.tratar_escolha_pedido(_opcao);
+	            missionManager.mission_resolver_direto(missao_atual.instance_id);
+	            fechar();
+	            opcao_selecionada = 0;
+	        }
+	    }
+	    else if (variable_struct_exists(_opcao, "correta") && _opcao.correta == 1) {
+	        missionManager.mission_avancar_etapa(missao_atual.instance_id, "buscando");
+	        fechar();
+	        opcao_selecionada = 0;
+	    }
+	    else {
+	        fechar();   // "deixa pra próxima"
+	        opcao_selecionada = 0;
+	    }
+	}
 }
 
 
@@ -87,30 +85,21 @@ if (estado == "mostrando_texto_busca" && keyboard_check_pressed(vk_space)) {
         fechar();   // só fecha, continua esperando ele ir buscar
     }
     else if (missao_atual.etapa == "pronta_para_entregar") {
-		in = missionManager.mission_data_get(missao_atual.mission_id)
-		p = undefined;
-		
-		show_debug_message("===== escolha de entrega =====")
-		show_debug_message(in.opcoes_pedido)
-		show_debug_message("==========")
-		
-		
-		
-		for (var i = 0; i < array_length(in.opcoes_pedido); i++) {
-		
-			if (variable_struct_exists(in.opcoes_pedido[i], "correta") && in.opcoes_pedido[i].correta==1) {
-				
-				p = in.opcoes_pedido[i];
+		var _md_ent = missionManager.mission_data_get(missao_atual.mission_id);
+		var _premio = undefined;
+
+		for (var i = 0; i < array_length(_md_ent.opcoes_pedido); i++) {
+			var _o = _md_ent.opcoes_pedido[i];
+			if (variable_struct_exists(_o, "correta") && _o.correta == 1) {
+				_premio = _o;
 				break;
-				
 			}
 		}
-		
-		missionManager.tratar_escolha_pedido(p)
+
+		missionManager.tratar_escolha_pedido(_premio);
 		missionManager.mission_resolver_direto(missao_atual.instance_id);
-		fechar()
-        
-    }
+		fechar();
+	}
 }
 
 

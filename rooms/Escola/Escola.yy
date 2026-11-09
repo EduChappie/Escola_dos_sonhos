@@ -13,6 +13,7 @@
     {"name":"inst_12248B2B","path":"rooms/Escola/Escola.yy",},
     {"name":"inst_66489395","path":"rooms/Escola/Escola.yy",},
     {"name":"inst_4C74D7D6","path":"rooms/Escola/Escola.yy",},
+    {"name":"inst_4C71DE14","path":"rooms/Escola/Escola.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -24,6 +25,7 @@
         {"$GMRInstance":"v4","%Name":"inst_18F70EBE","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_18F70EBE","objectId":{"name":"gameManager","path":"objects/gameManager/gameManager.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":-118.0,"y":163.0,},
         {"$GMRInstance":"v4","%Name":"inst_66489395","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_66489395","objectId":{"name":"dialogoManager_UI","path":"objects/dialogoManager_UI/dialogoManager_UI.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":-115.0,"y":211.0,},
         {"$GMRInstance":"v4","%Name":"inst_4C74D7D6","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_4C74D7D6","objectId":{"name":"statusManager_UI","path":"objects/statusManager_UI/statusManager_UI.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":-122.0,"y":358.0,},
+        {"$GMRInstance":"v4","%Name":"inst_4C71DE14","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_4C71DE14","objectId":{"name":"obj_minimapa","path":"objects/obj_minimapa/obj_minimapa.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":-86.0,"y":426.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRTileLayer":"","%Name":"collisionBlock_4x4","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"collisionBlock_4x4","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":270,"SerialiseWidth":482,"TileCompressedData":[
           -12066,-2147483648,-2,37,-22,-2147483648,1,37,-61,-2147483648,-2,37,-417,-2147483648,-2,37,-10,-2147483648,
