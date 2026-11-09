@@ -13,7 +13,7 @@ if (hover != -1 && mouse_check_button_pressed(mb_left) && !instance_exists(obj_t
         // Cria a transição e passa as configurações
         var t = instance_create_depth(0, 0, -10000, obj_transicao);
         t.velocidade   = velocidade_circulo;
-        t.sala_destino = Escola;
+        t.sala_destino = intro;
     } else if (hover == 1) {
         game_end();
     }

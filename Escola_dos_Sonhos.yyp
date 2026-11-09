@@ -46,6 +46,7 @@
     {"id":{"name":"gameManager","path":"objects/gameManager/gameManager.yy",},},
     {"id":{"name":"missionManager","path":"objects/missionManager/missionManager.yy",},},
     {"id":{"name":"NPCManager","path":"objects/NPCManager/NPCManager.yy",},},
+    {"id":{"name":"obj_intro","path":"objects/obj_intro/obj_intro.yy",},},
     {"id":{"name":"obj_menu","path":"objects/obj_menu/obj_menu.yy",},},
     {"id":{"name":"obj_minimapa","path":"objects/obj_minimapa/obj_minimapa.yy",},},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},},
@@ -55,6 +56,7 @@
     {"id":{"name":"statusManager_UI","path":"objects/statusManager_UI/statusManager_UI.yy",},},
     {"id":{"name":"timeManager","path":"objects/timeManager/timeManager.yy",},},
     {"id":{"name":"Escola","path":"rooms/Escola/Escola.yy",},},
+    {"id":{"name":"intro","path":"rooms/intro/intro.yy",},},
     {"id":{"name":"Menu","path":"rooms/Menu/Menu.yy",},},
     {"id":{"name":"Statisticas_fim_mes","path":"rooms/Statisticas_fim_mes/Statisticas_fim_mes.yy",},},
     {"id":{"name":"Statisticas_final","path":"rooms/Statisticas_final/Statisticas_final.yy",},},
@@ -126,6 +128,7 @@
     {"roomId":{"name":"Escola","path":"rooms/Escola/Escola.yy",},},
     {"roomId":{"name":"Statisticas_fim_mes","path":"rooms/Statisticas_fim_mes/Statisticas_fim_mes.yy",},},
     {"roomId":{"name":"Statisticas_final","path":"rooms/Statisticas_final/Statisticas_final.yy",},},
+    {"roomId":{"name":"intro","path":"rooms/intro/intro.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[
