@@ -1,12 +1,26 @@
-
 var _hor = keyboard_check(ord("D")) - keyboard_check(ord("A"));
 var _ver = keyboard_check(ord("S")) - keyboard_check(ord("W"));
 
 
-move_and_collide(_hor*move_speed, _ver*move_speed, [tilemap])
+// Corrigir velocidade diagonal
+var _distancia = point_distance(0, 0, _hor, _ver);
 
+if (_distancia > 0) {
+    _hor /= _distancia;
+    _ver /= _distancia;
+}
 
-
+// Movimentação
+move_and_collide(
+    _hor * move_speed,
+    _ver * move_speed,
+    [tilemap]
+);
+// TESTE: arredondar a posição do personagem
+if (_hor != 0 || _ver != 0) {
+    x = round(x);
+    y = round(y);
+}
 // para movimentação do player
 if (_hor != 0 or _ver != 0) {
 
@@ -51,6 +65,7 @@ if (_hor != 0 or _ver != 0) {
 		break;
 		
 	}
+
 }
 // repetindo... os sprite tendem a mudar, não temos os corretos tende a mudar
 

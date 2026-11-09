@@ -53,3 +53,34 @@ function escolher_opcao(_indice) {
     missionManager.mission_resolver(missao_atual.instance_id, _indice);
     fechar();
 }
+
+
+
+function draw_caixa_base() {
+    var _gw = display_get_gui_width();
+    var _gh = display_get_gui_height();
+
+    var _largura = _gw * 0.6;
+    var _altura = 210;
+    var _x = (_gw - _largura) / 2;
+    var _y = _gh - _altura - 200;
+
+    draw_set_alpha(1);
+    draw_set_color(c_white);
+
+    draw_sprite_stretched(
+        spr_caixa_verde,
+        0,
+        _x,
+        _y,
+        _largura,
+        _altura
+    );
+
+    return {
+        x: _x,
+        y: _y,
+        w: _largura,
+        h: _altura
+    };
+}
