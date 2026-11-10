@@ -10,17 +10,21 @@ if (_distancia > 0) {
     _ver /= _distancia;
 }
 
-// Movimentação
-move_and_collide(
-    _hor * move_speed,
-    _ver * move_speed,
-    [tilemap]
-);
-// TESTE: arredondar a posição do personagem
-if (_hor != 0 || _ver != 0) {
-    x = round(x);
-    y = round(y);
-}
+
+
+// acumula o movimento fracionado e move só a parte inteira
+hsp_rem += _hor * move_speed;
+vsp_rem += _ver * move_speed;
+
+var _mx = round(hsp_rem);
+var _my = round(vsp_rem);
+hsp_rem -= _mx;
+vsp_rem -= _my;
+
+move_and_collide(_mx, _my, [tilemap, block, block4]);
+
+
+
 // para movimentação do player
 if (_hor != 0 or _ver != 0) {
 

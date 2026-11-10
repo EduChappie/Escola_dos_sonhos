@@ -4,6 +4,9 @@ move_speed = 3
 direction = 3
 npc_proximo = noone;
 
+hsp_rem = 0;
+vsp_rem = 0;
+
 // 0 = esquerda
 // 1 = direita
 // 2 = cima

@@ -126,8 +126,8 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"Menu","path":"rooms/Menu/Menu.yy",},},
     {"roomId":{"name":"Escola","path":"rooms/Escola/Escola.yy",},},
+    {"roomId":{"name":"Menu","path":"rooms/Menu/Menu.yy",},},
     {"roomId":{"name":"Statisticas_fim_mes","path":"rooms/Statisticas_fim_mes/Statisticas_fim_mes.yy",},},
     {"roomId":{"name":"Statisticas_final","path":"rooms/Statisticas_final/Statisticas_final.yy",},},
     {"roomId":{"name":"intro","path":"rooms/intro/intro.yy",},},
