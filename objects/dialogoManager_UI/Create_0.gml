@@ -68,7 +68,7 @@ function draw_caixa_base() {
     var _x = (_gw - _largura) / 2; // centralizada
     var _y = _gh - _altura - 200;   // colada embaixo, com margem
 
-    draw_sprite_stretched(spr_caixa_dialogo, 0, _x, _y, _largura, _altura);
+    draw_sprite_stretched(spr_caixa_verde, 0, _x, _y, _largura, _altura);
 
     // devolve a área útil pro texto usar
     return { x: _x, y: _y, w: _largura, h: _altura };
