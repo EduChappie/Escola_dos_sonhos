@@ -82,4 +82,27 @@ function draw_caixa_base() {
 function mostrar_aviso(_texto) {
     aviso = _texto;
     aviso_timer = 120;   // ~2 segundos a 60 fps
+    var _largura = _gw * 0.6;
+    var _altura = 210;
+    var _x = (_gw - _largura) / 2;
+    var _y = _gh - _altura - 200;
+
+    draw_set_alpha(1);
+    draw_set_color(c_white);
+
+    draw_sprite_stretched(
+        spr_caixa_verde,
+        0,
+        _x,
+        _y,
+        _largura,
+        _altura
+    );
+
+    return {
+        x: _x,
+        y: _y,
+        w: _largura,
+        h: _altura
+    };
 }

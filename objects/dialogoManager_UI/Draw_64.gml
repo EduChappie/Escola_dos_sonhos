@@ -1,5 +1,8 @@
+draw_set_font(Font_principal);
+
 if (estado == "fechado") {
     // não desenha nada
+	
 }
 
 
@@ -14,7 +17,7 @@ else if (estado == "texto_simples") {
     draw_text_ext(_c.x + _pad, _c.y + _pad, texto_simples, 20, _c.w - _pad * 2);
 	
 	draw_set_halign(fa_right);
-    draw_text(_c.x + _c.w - _pad, _c.y + _c.h - 44, "[Espaço para continuar]");
+    draw_text(_c.x + _c.w - _pad, _c.y + _c.h - 48, "[Espaço para continuar]");
     draw_set_halign(fa_left);
 }
 
@@ -41,7 +44,7 @@ else if (estado == "mostrando_texto_busca") {
     }
 
     draw_set_halign(fa_right);
-    draw_text(_c.x + _c.w - _pad, _c.y + _c.h - 44, "[Espaço para continuar]");
+    draw_text(_c.x + _c.w - _pad, _c.y + _c.h - 48, "[Espaço para continuar]");
     draw_set_halign(fa_left);
 }
 
@@ -58,7 +61,7 @@ else if (estado == "mostrando_texto") {
     
 	
 	draw_set_halign(fa_right);
-    draw_text(_c.x + _c.w - _pad, _c.y + _c.h - 44, "[Espaço para continuar]");
+    draw_text(_c.x + _c.w - _pad, _c.y + _c.h - 48, "[Espaço para continuar]");
     draw_set_halign(fa_left);
 }
 
