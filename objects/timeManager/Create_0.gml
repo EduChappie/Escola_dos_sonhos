@@ -6,8 +6,8 @@ depth = -100
 space = [0, 2, 0]
 
 // tempo de passagem do mês
-pmin = 0    // duração do mês em minutos (ideal: 3 a 5). Antes era 60, só para testes
-psec = 40
+pmin = 1    // duração do mês em minutos (ideal: 3 a 5). Antes era 60, só para testes
+psec = 0
 pmil = 0
 
 // começa a contagem

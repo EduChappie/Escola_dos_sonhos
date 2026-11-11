@@ -293,7 +293,7 @@ function mission_Data() {
             tipo_missao: "busca",
             tipo_npc_alvo: "zelador",
             npc_id_especifico: undefined,
-            meses_disponiveis: _todos,
+            meses_disponiveis: [1, 3],
             peso_sorteio: 1.0,
             requer_flag: "zelador_pediu_material",   // só aparece depois de "A Limpeza e Manutenção"
 
@@ -409,8 +409,8 @@ function mission_Data() {
             ativa: false,   // aguarda o NPC "bibliotecaria"
             tipo_missao: "busca",
             tipo_npc_alvo: "bibliotecaria",
-            npc_id_especifico: "bibliotecaria",
-            meses_disponiveis: _todos,
+            npc_id_especifico: "aluno_cammy", // personagem provisório
+            meses_disponiveis: [3],
             peso_sorteio: 1.0,
 
             opcoes_pedido: [
@@ -519,8 +519,8 @@ function mission_Data() {
             titulo: "Equipamentos da Informática",
             ativa: false,   // aguarda o NPC "tecnico_informatica"
             tipo_missao: "busca",
-            tipo_npc_alvo: "tecnico_informatica",
-            npc_id_especifico: "tecnico_informatica",
+            tipo_npc_alvo: "professor",
+            npc_id_especifico: undefined,
             meses_disponiveis: _todos,
             peso_sorteio: 1.0,
 
@@ -556,7 +556,7 @@ function mission_Data() {
             ativa: false,   // aguarda o NPC "prof_matematica"
             tipo_missao: "dialogo",
             tipo_npc_alvo: "professor",
-            npc_id_especifico: "prof_matematica",
+            npc_id_especifico: undefined,
             meses_disponiveis: _todos,
             peso_sorteio: 1.0,
 
@@ -592,7 +592,7 @@ function mission_Data() {
             ativa: false,   // aguarda o NPC "prof_geografia"
             tipo_missao: "dialogo",
             tipo_npc_alvo: "professor",
-            npc_id_especifico: "prof_geografia",
+            npc_id_especifico: undefined,
             meses_disponiveis: _todos,
             peso_sorteio: 1.0,
 
@@ -628,7 +628,7 @@ function mission_Data() {
             ativa: false,   // aguarda o NPC "prof_portugues"
             tipo_missao: "dialogo",
             tipo_npc_alvo: "professor",
-            npc_id_especifico: "prof_portugues",
+            npc_id_especifico: undefined,
             meses_disponiveis: _todos,
             peso_sorteio: 1.0,
 

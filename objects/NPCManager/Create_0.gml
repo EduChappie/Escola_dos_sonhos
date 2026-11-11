@@ -48,7 +48,7 @@ function npc_posicao_no_mes(_dado, _mes) {
 // e as zonas ficavam espalhadas pelo mapa se acumulando a cada mês.
 function npc_remover_atuais() {
     // o diálogo pode estar apontando para uma zona que vai sumir
-    if (instance_exists(dialogoManager_UI) && dialogoManager_UI.estado != "fechado") {
+    if (instance_exists(dialogoManager_UI) && variable_instance_exists(dialogoManager_UI, "estado") && dialogoManager_UI.estado != "fechado") {
         dialogoManager_UI.fechar();
     }
 
