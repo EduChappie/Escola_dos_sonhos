@@ -5,8 +5,8 @@
 var ids = variable_struct_get_names(NPCManager.instancias)
 
 
-for (x = 0; x < array_length(ids); x++) {
-	var _npc = ids[x];
+for (var n = 0; n < array_length(ids); n++) {
+	var _npc = ids[n];
 	var _inst = NPCManager.instancias[$ _npc];
 	
 	if (missionManager.missao_pendente_de(_npc) != undefined) {
@@ -29,4 +29,22 @@ if (_missao_no_ponto != undefined) {
     
     draw_sprite(sArea50x, 0, _p.x, _p.y);  // balão em cima da zona
 	
+}
+
+
+
+
+
+// ===== BALÃO "APERTE E" NA CABEÇA DO PLAYER =====
+// Aparece quando o player pode interagir (está na zona de um NPC ou num
+// ponto de coleta) E nenhum diálogo está aberto. Some ao apertar E
+// (o diálogo abre) e volta quando o diálogo fecha, se ele ainda estiver na zona.
+// Posição: balao_acao_dx / balao_acao_dy no Create deste objeto.
+if (estado == "fechado" && instance_exists(obj_player)) {
+	var _na_zona_de_npc = (obj_player.npc_proximo != noone);
+	var _no_ponto_coleta = (_missao_no_ponto != undefined);
+
+	if (_na_zona_de_npc || _no_ponto_coleta) {
+		draw_sprite(balao_acao, 0, obj_player.x + balao_acao_dx, obj_player.y + balao_acao_dy);
+	}
 }

@@ -12,6 +12,17 @@ aviso_timer = 0;
 ballon = ballon_talking
 
 
+// ===== BALÃO "APERTE E" (fica na cabeça do player quando ele pode interagir) =====
+// Para mexer na posição: balao_acao_dx / balao_acao_dy
+//   dx = deslocamento horizontal em relação ao x do player (negativo = esquerda)
+//   dy = deslocamento vertical   em relação ao y do player (negativo = para cima)
+// O sprite ballon_action tem 16x16 e origem no canto superior esquerdo,
+// por isso dx = -8 centraliza o balão no player.
+balao_acao    = ballon_action
+balao_acao_dx = -8
+balao_acao_dy = -40
+
+
 
 
 
@@ -54,8 +65,11 @@ function fechar() {
 
 function escolher_opcao(_indice) {
 	show_debug_message("chamar resolver")
-    missionManager.mission_resolver(missao_atual.instance_id, _indice);
-    fechar();
+    var _resolveu = missionManager.mission_resolver(missao_atual.instance_id, _indice);
+
+    // se não resolveu (ex.: dinheiro insuficiente), o diálogo continua aberto
+    // e o aviso aparece na tela. "Ignorar" também devolve true e fecha normalmente.
+    if (_resolveu) fechar();
 }
 
 
@@ -79,30 +93,10 @@ function draw_caixa_base() {
 
 
 
+// Só liga o aviso. Quem desenha é o Draw_64 (vermelho, no topo da tela).
+// (Antes esta função tinha código de desenho copiado da draw_caixa_base,
+//  que lia _gw/_gh inexistentes e travava o jogo ao faltar dinheiro.)
 function mostrar_aviso(_texto) {
     aviso = _texto;
     aviso_timer = 120;   // ~2 segundos a 60 fps
-    var _largura = _gw * 0.6;
-    var _altura = 210;
-    var _x = (_gw - _largura) / 2;
-    var _y = _gh - _altura - 200;
-
-    draw_set_alpha(1);
-    draw_set_color(c_white);
-
-    draw_sprite_stretched(
-        spr_caixa_verde,
-        0,
-        _x,
-        _y,
-        _largura,
-        _altura
-    );
-
-    return {
-        x: _x,
-        y: _y,
-        w: _largura,
-        h: _altura
-    };
 }
