@@ -38,6 +38,7 @@
   "name":"Escola_dos_Sonhos",
   "resources":[
     {"id":{"name":"font_normal","path":"fonts/font_normal/font_normal.yy",},},
+    {"id":{"name":"Font_principal","path":"fonts/Font_principal/Font_principal.yy",},},
     {"id":{"name":"Fredericka_titulo","path":"fonts/Fredericka_titulo/Fredericka_titulo.yy",},},
     {"id":{"name":"Fredericka","path":"fonts/Fredericka/Fredericka.yy",},},
     {"id":{"name":"LEIA-ME 2","path":"notes/LEIA-ME 2/LEIA-ME 2.yy",},},
@@ -93,6 +94,7 @@
     {"id":{"name":"sPlayer_side_idle","path":"sprites/sPlayer_side_idle/sPlayer_side_idle.yy",},},
     {"id":{"name":"sPlayer_side_walk","path":"sprites/sPlayer_side_walk/sPlayer_side_walk.yy",},},
     {"id":{"name":"spr_caixa_dialogo","path":"sprites/spr_caixa_dialogo/spr_caixa_dialogo.yy",},},
+    {"id":{"name":"spr_caixa_verde","path":"sprites/spr_caixa_verde/spr_caixa_verde.yy",},},
     {"id":{"name":"Sprite42","path":"sprites/Sprite42/Sprite42.yy",},},
     {"id":{"name":"Sprite43","path":"sprites/Sprite43/Sprite43.yy",},},
     {"id":{"name":"Sprite45","path":"sprites/Sprite45/Sprite45.yy",},},
@@ -124,8 +126,8 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"Menu","path":"rooms/Menu/Menu.yy",},},
     {"roomId":{"name":"Escola","path":"rooms/Escola/Escola.yy",},},
+    {"roomId":{"name":"Menu","path":"rooms/Menu/Menu.yy",},},
     {"roomId":{"name":"Statisticas_fim_mes","path":"rooms/Statisticas_fim_mes/Statisticas_fim_mes.yy",},},
     {"roomId":{"name":"Statisticas_final","path":"rooms/Statisticas_final/Statisticas_final.yy",},},
     {"roomId":{"name":"intro","path":"rooms/intro/intro.yy",},},

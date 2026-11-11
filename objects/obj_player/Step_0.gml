@@ -1,9 +1,27 @@
-
 var _hor = keyboard_check(ord("D")) - keyboard_check(ord("A"));
 var _ver = keyboard_check(ord("S")) - keyboard_check(ord("W"));
 
 
-move_and_collide(_hor*move_speed, _ver*move_speed, [tilemap, block, block4])
+// Corrigir velocidade diagonal
+var _distancia = point_distance(0, 0, _hor, _ver);
+
+if (_distancia > 0) {
+    _hor /= _distancia;
+    _ver /= _distancia;
+}
+
+
+
+// acumula o movimento fracionado e move só a parte inteira
+hsp_rem += _hor * move_speed;
+vsp_rem += _ver * move_speed;
+
+var _mx = round(hsp_rem);
+var _my = round(vsp_rem);
+hsp_rem -= _mx;
+vsp_rem -= _my;
+
+move_and_collide(_mx, _my, [tilemap, block, block4]);
 
 
 
@@ -51,6 +69,7 @@ if (_hor != 0 or _ver != 0) {
 		break;
 		
 	}
+
 }
 // repetindo... os sprite tendem a mudar, não temos os corretos tende a mudar
 

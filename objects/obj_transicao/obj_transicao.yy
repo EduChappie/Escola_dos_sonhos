@@ -11,8 +11,8 @@
   "name":"obj_transicao",
   "overriddenProperties":[],
   "parent":{
-    "name":"managers",
-    "path":"folders/managers.yy",
+    "name":"objs",
+    "path":"folders/objs.yy",
   },
   "parentObjectId":null,
   "persistent":false,

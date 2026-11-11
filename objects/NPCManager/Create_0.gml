@@ -1,12 +1,13 @@
 
-npcs       = {};   // "prof_gilson" -> struct de dado
-instancias = {};   // "prof_gilson" -> id da instância na tela
+npcs       = {};   // "prof_quimica" -> struct de dado
+instancias = {};   // "prof_quimica" -> id da instância na tela
 
 
 var _lista = npc_catalog(); // lista dos npcs
 
 for (var i = 0; i < array_length(_lista); i++) {
     var _n = _lista[i];
+    _n.agenda_mensal = npc_montar_agenda(_n.rota);   // rota (nomes de sala) -> agenda (x, y)
     npcs[$ _n.id] = _n;
 }
 
@@ -20,12 +21,23 @@ function npc_get(_id) {
 }
 
 
-// função de pegar as posições do npc
+// função de pegar a posição do npc naquele mês
+// - mês sem entrada na agenda: repete a última posição conhecida
+// - sala "ausente": devolve undefined (NPC não aparece naquele mês)
 function npc_posicao_no_mes(_dado, _mes) {
+    var _ultima = undefined;
+
     for (var i = 0; i < array_length(_dado.agenda_mensal); i++) {
-        if (_dado.agenda_mensal[i].mes == _mes) return _dado.agenda_mensal[i];
+        var _e = _dado.agenda_mensal[i];
+        if (_e.mes == _mes) {
+            if (_e.sala == "ausente") return undefined;
+            return _e;
+        }
+        if (_e.mes < _mes) _ultima = _e;
     }
-    return undefined; // fallback
+
+    if (_ultima != undefined && _ultima.sala == "ausente") return undefined;
+    return _ultima;
 }
 
 

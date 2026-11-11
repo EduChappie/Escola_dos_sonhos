@@ -4,10 +4,12 @@ function ui_Data() {
 			nome: "box_basic",
 			x: 25,
 			y: 25,
+			largura: 500,
+			altura: 160,
 			sprite: box_basic,
 		},
 		{
-			nome: "money",
+			nome: "Dinheiro",
 			x: 50,
 			y: 50,
 			color: c_white,
@@ -18,7 +20,7 @@ function ui_Data() {
 			x: 50,
 			y: 100,
 			color: c_white,
-			value: "Mes: "+string(gameManager.meses[gameManager.mes_atual])
+			value: "Mês: "+string(gameManager.meses[gameManager.mes_atual])
 	
 		},
 		{
