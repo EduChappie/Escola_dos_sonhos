@@ -15,6 +15,19 @@ moeda                = 200;
 
 eventos_criticos = [];        
 
+// ===== MEMÓRIA DO JOGO (consequências) =====
+flags = {};              // marcas ativadas por consequências: { "zelador_pediu_material": true }
+noticias_do_mes = [];    // textos das consequências que aconteceram na virada do mês
+                         // (para a tela de fim de mês mostrar depois)
+
+function flag_set(_nome) {
+	flags[$ _nome] = true;
+}
+
+function flag_tem(_nome) {
+	return flags[$ _nome] ?? false;
+}
+
 // Barras que aparecem na tela (nome da variável, texto e cor)
 barras = [
 	{ var_nome: "felicidade_alunos",    texto: "Alunos",         cor: c_aqua   },
@@ -39,7 +52,7 @@ function pode_pagar(_efeito) {
 }
 
 // Recebe um struct de efeito, por exemplo { felicidade: +2, dinheiro: -150 }
-// Funciona para recompensas, erros e penalidades por grau
+// Funciona para recompensas, erros, penalidades por grau e consequências
 function aplicar_efeito(_efeito) {
 	if (_efeito == undefined) return;
 
@@ -108,11 +121,14 @@ function novoMes() {
 	mes_atual += 1;
 	moeda += 200;
 
+	// 3) consequências de missões de meses anteriores que vencem agora
+	missionManager.mission_aplicar_consequencias(mes_atual);
+
 	obj_player.resetPosition();
 	statusManager_UI.reset_values();
 	show_debug_message("Passou o mês: " + meses[mes_atual]);
 
-	// 3) posiciona NPCs e sorteia as missões do novo mês
+	// 4) posiciona NPCs e sorteia as missões do novo mês
 	reset();
 }
 

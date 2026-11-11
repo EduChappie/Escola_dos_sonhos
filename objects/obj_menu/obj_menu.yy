@@ -10,8 +10,8 @@
   "name":"obj_menu",
   "overriddenProperties":[],
   "parent":{
-    "name":"managers",
-    "path":"folders/managers.yy",
+    "name":"objs",
+    "path":"folders/objs.yy",
   },
   "parentObjectId":null,
   "persistent":false,

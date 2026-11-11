@@ -55,5 +55,7 @@ var _missao_no_ponto = missionManager.mission_verificar_pontos_busca();
 
 if (_missao_no_ponto != undefined && dialogoManager_UI.estado == "fechado") {
     missionManager.mission_avancar_etapa(_missao_no_ponto.instance_id, "pronta_para_entregar");
-    dialogoManager_UI.abrir_texto_simples("Você pegou o giz! Volte para entregar.", noone);
+    var _md_coleta = missionManager.mission_data_get(_missao_no_ponto.mission_id);
+    var _msg_coleta = _md_coleta[$ "texto_coleta"] ?? "Você pegou o item! Volte para entregar.";
+    dialogoManager_UI.abrir_texto_simples(_msg_coleta, noone);
 }

@@ -1,12 +1,14 @@
-aqui fica todos os dados de NPCs do jogo, 
+DADOS DO JOGO (resumo rápido)
 
+NPCs, salas e rotas de janeiro a dezembro  ---->  scripts/npc_Data/npc_Data.gml
+Missões e consequências                    ---->  scripts/mission_Data/mission_Data.gml
+                                                  (o MOLDE está comentado no topo do arquivo)
 
-### IMPORTANTE ###
-se quiser
-adicionar mais npc, é aqui    ---->   npc_Data.gml
+Para adicionar um NPC: copie um bloco de npc_catalog(), troque id/nome/tipo/sprite
+e preencha a rota com 12 itens (use nomes de sala; "ausente" para meses sem aparecer).
 
+Para criar uma missão: copie um bloco de mission_Data(), preencha e defina as consequencias.
 
-
-Caso queira mexer nas missões
-
----> arquivo "mission_Data.gml"
+Mais detalhes: pasta "docs" na raiz do projeto
+  docs/estrutura_do_projeto.md
+  docs/ideias_futuras.md

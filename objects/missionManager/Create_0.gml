@@ -1,6 +1,6 @@
 
 missoes_por_mes = 4;   // máximo de missões novas por mês (ajuste à vontade)
-modo_teste = true;
+modo_teste = true;     // true = ignora meses_disponiveis das missões
 missoes_vistas = [];
 proximo_id = 0;        // contador para IDs únicos
 
@@ -9,6 +9,9 @@ proximo_id = 0;        // contador para IDs únicos
 mission_catalog = mission_Data();
 active_missions = [];
 mission_history = [];
+
+// consequências marcadas para meses futuros (ver mission_registrar_resultado)
+consequencias_agendadas = [];
 
 
 
@@ -41,6 +44,69 @@ function missao_pendente_de(_npc_id) {
 
 
 
+// ===== CONSEQUÊNCIAS =====
+
+// Chamada sempre que uma missão termina (acertou / errou / pagou / expirou).
+// Guarda o resultado na instância e agenda as consequências definidas
+// em "consequencias" dentro do mission_Data.
+function mission_registrar_resultado(_instancia, _resultado) {
+    _instancia.resultado = _resultado;
+    _instancia.mes_resolucao = gameManager.mes_atual;
+
+    var _md = mission_data_get(_instancia.mission_id);
+    var _lista = _md[$ "consequencias"];
+    if (_lista == undefined) return;
+
+    for (var i = 0; i < array_length(_lista); i++) {
+        var _c = _lista[i];
+        if (_c.quando != _resultado) continue;
+
+        var _meses = max(1, _c[$ "apos_meses"] ?? 1);
+
+        array_push(consequencias_agendadas, {
+            mes_alvo:       gameManager.mes_atual + _meses,
+            mission_id:     _md.id,
+            npc_id:         _instancia.npc_id,
+            resultado:      _resultado,
+            efeito:         _c[$ "efeito"],
+            evento_critico: _c[$ "evento_critico"],
+            flag:           _c[$ "flag"],
+            texto:          _c[$ "texto"]
+        });
+
+        show_debug_message("Consequência agendada: " + _md.id + " (" + _resultado + ") -> mês " + string(gameManager.mes_atual + _meses));
+    }
+}
+
+
+// Chamada pelo gameManager.novoMes(), já com o mês novo.
+// Aplica tudo que estava agendado para este mês (ou antes).
+function mission_aplicar_consequencias(_mes) {
+    gameManager.noticias_do_mes = [];
+    var _restantes = [];
+
+    for (var i = 0; i < array_length(consequencias_agendadas); i++) {
+        var _c = consequencias_agendadas[i];
+
+        if (_c.mes_alvo > _mes) {          // ainda não chegou a hora
+            array_push(_restantes, _c);
+            continue;
+        }
+
+        gameManager.aplicar_efeito(_c.efeito);
+        if (_c.evento_critico != undefined) gameManager.evento_critico_executar(_c.evento_critico);
+        if (_c.flag != undefined)           gameManager.flag_set(_c.flag);
+        if (_c.texto != undefined) {
+            array_push(gameManager.noticias_do_mes, _c.texto);
+            show_debug_message("NOTÍCIA: " + _c.texto);
+        }
+    }
+
+    consequencias_agendadas = _restantes;
+}
+
+
+
 function mission_resolver_direto(_instance_id) {
 	show_debug_message("Resolvendo direto")
 	show_debug_message(_instance_id)
@@ -49,8 +115,15 @@ function mission_resolver_direto(_instance_id) {
 	
     for (var i = 0; i < array_length(_ativas); i++) {
         if (_ativas[i].instance_id != _instance_id) continue;
-        _ativas[i].status = "resolvida";
-        array_push(missionManager.mission_history, _ativas[i]);
+
+        var _instancia = _ativas[i];
+
+        // veio da entrega do item = acertou | veio direto do pedido = pagou
+        var _resultado = (_instancia.etapa == "pronta_para_entregar") ? "acertou" : "pagou";
+
+        _instancia.status = "resolvida";
+        mission_registrar_resultado(_instancia, _resultado);
+        array_push(missionManager.mission_history, _instancia);
         array_delete(_ativas, i, 1);
         return;
     }
@@ -139,6 +212,15 @@ function mission_sortear_indice(_lista) {
 
 // a missão serve para esse NPC?
 function mission_compativel(_md, _dado, _mes) {
+    // missão dormente (aguardando NPC ou ajustes)
+    if (_md[$ "ativa"] != undefined && !_md.ativa) return false;
+
+    // flags: exige ou bloqueia conforme o que já aconteceu no jogo
+    var _req = _md[$ "requer_flag"];
+    if (_req != undefined && !gameManager.flag_tem(_req)) return false;
+    var _blq = _md[$ "bloqueada_por_flag"];
+    if (_blq != undefined && gameManager.flag_tem(_blq)) return false;
+
     // filtro de mês (ignorado no modo teste)
     if (!modo_teste
     && _md.meses_disponiveis != undefined
@@ -220,13 +302,38 @@ function mission_sortear_para_mes(_mes) {
     }
 }
 
-// roda uma vez: avisa quais missões apontam para NPC que não existe
+// roda uma vez: avisa de problemas no catálogo de missões
 function mission_validar_catalogo() {
+    var _resultados_validos = ["acertou", "errou", "pagou", "expirou"];
+
     for (var i = 0; i < array_length(mission_catalog); i++) {
         var _md = mission_catalog[i];
+
+        // dormente: só informa quem ela está esperando
+        if (_md[$ "ativa"] != undefined && !_md.ativa) {
+            show_debug_message("(dormente) '" + _md.id + "' aguarda NPC: " + string(_md.npc_id_especifico));
+            continue;
+        }
+
         if (_md.npc_id_especifico != undefined
         && NPCManager.npc_get(_md.npc_id_especifico) == undefined) {
             show_debug_message("AVISO: missão '" + _md.id + "' aponta para NPC inexistente: " + _md.npc_id_especifico);
+        }
+
+        if (_md.tipo_missao == "busca") {
+            var _pb = _md[$ "ponto_busca"];
+            if (_pb == undefined || (_pb.x == 0 && _pb.y == 0)) {
+                show_debug_message("AVISO: missão '" + _md.id + "' está sem ponto_busca válido");
+            }
+        }
+
+        var _cons = _md[$ "consequencias"];
+        if (_cons != undefined) {
+            for (var j = 0; j < array_length(_cons); j++) {
+                if (!array_contains(_resultados_validos, _cons[j].quando)) {
+                    show_debug_message("AVISO: missão '" + _md.id + "' tem consequência com 'quando' inválido: " + string(_cons[j].quando));
+                }
+            }
         }
     }
 }
@@ -261,8 +368,15 @@ function mission_resolver(_instance_id, _indice_opcao) {
         // acertou, errou ou opção paga: aplica o efeito
         gameManager.aplicar_efeito(_efeito);
 
+        // descobre o resultado (usado nas consequências dos meses seguintes)
+        var _resultado = "pagou";
+        if (variable_struct_exists(_opcao, "correta")) {
+            _resultado = _opcao.correta ? "acertou" : "errou";
+        }
+
         statusManager_UI.reset_values();
         _instancia.status = "resolvida";
+        mission_registrar_resultado(_instancia, _resultado);
         array_push(mission_history, _instancia);
         array_delete(active_missions, i, 1);
         dialogoManager_UI.opcao_selecionada = 0;
@@ -328,11 +442,10 @@ function mission_processar_fim_de_mes() {
 
         if (_instancia.grau_atual >= _md.grau_maximo) {
             _instancia.status = "expirada";
+            mission_registrar_resultado(_instancia, "expirou");
             array_push(mission_history, _instancia);
             array_delete(active_missions, i, 1);
         }
     }
     statusManager_UI.reset_values();
 }
-
-
