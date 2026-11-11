@@ -6,12 +6,30 @@ randomise();
 
 mes_atual = 0;
 
-// ===== STATUS (0 a 100 = já é a porcentagem) =====
+// =====================================================================
+//  OS 4 PARÂMETROS DO JOGO (0 a 100 = já é a porcentagem)
+//
+//    felicidade_alunos      -> felicidade dos ALUNOS
+//    felicidade_professor   -> felicidade dos PROFESSORES
+//    ensino                 -> nível de ensino
+//    infraestrutura         -> estado físico da escola
+//  + moeda (dinheiro)
+//
+//  CHAVES DE EFEITO usadas nas missões (mission_Data):
+//    felicidade              -> afeta os DOIS (alunos e professores)
+//    felicidade_alunos       -> só alunos
+//    felicidade_professores  -> só professores
+//    ensino                  -> ensino
+//    infraestrutura          -> infraestrutura
+//    dinheiro                -> moeda
+//  (aliases antigos ainda aceitos: satisfacao_professores = felicidade_professores,
+//   desempenho_escolar = ensino)
+// =====================================================================
 infraestrutura       = 50;
 ensino               = 50;
 felicidade_alunos    = 50;
 felicidade_professor = 50;
-moeda                = 200;   
+moeda                = 160;   
 
 eventos_criticos = [];        
 
@@ -66,11 +84,17 @@ function aplicar_efeito(_efeito) {
 				moeda = max(0, moeda + _v);
 				break;
 
-			case "felicidade":   // geral: afeta alunos e professores
+			case "felicidade":   // geral: afeta alunos E professores
+				stat_somar("felicidade_alunos", _v);
+				stat_somar("felicidade_professor", _v);
+				break;
+
+			case "felicidade_alunos":
 				stat_somar("felicidade_alunos", _v);
 				break;
 
-			case "satisfacao_professores":
+			case "felicidade_professores":
+			case "satisfacao_professores":   // nome antigo (alias)
 				stat_somar("felicidade_professor", _v);
 				break;
 
@@ -79,7 +103,7 @@ function aplicar_efeito(_efeito) {
 				break;
 
 			case "ensino":
-			case "desempenho_escolar":
+			case "desempenho_escolar":       // nome antigo (alias)
 				stat_somar("ensino", _v);
 				break;
 

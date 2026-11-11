@@ -67,7 +67,12 @@ else if (estado == "mostrando_opcoes_busca") {
 
 
 // se ele ficar muito longe, tem que sumir a tela
-if (estado != "fechado" && npc_da_conversa != noone) {
+// se a zona/NPC da conversa foi destruída (virada de mês), fecha o diálogo
+if (estado != "fechado" && npc_da_conversa != noone && !instance_exists(npc_da_conversa)) {
+    fechar();
+}
+
+if (estado != "fechado" && npc_da_conversa != noone && instance_exists(npc_da_conversa)) {
     var _distancia = point_distance(obj_player.x, obj_player.y, npc_da_conversa.x, npc_da_conversa.y);
 
     if (_distancia > 50) {   // ajuste de alcance pra conversa
