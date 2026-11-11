@@ -34,5 +34,5 @@
     "path":"sprites/sArea60x50/sArea60x50.yy",
   },
   "spriteMaskId":null,
-  "visible":false,
+  "visible":true,
 }

@@ -34,7 +34,7 @@ function local_catalog() {
             pontos: { padrao: { x: 1205, y: 202 } } },
 
         almoxarifado: { x1: 66, y1: 605, x2: 119, y2: 662,
-            pontos: { padrao: { x: 92, y: 633 } } },
+            pontos: { padrao: { x: 119, y: 551 } } },
 
         corredor:   { x1: 237, y1: 368, x2: 813,  y2: 652,
             pontos: {
@@ -50,8 +50,8 @@ function local_catalog() {
             pontos: {
                 padrao:    { x: 991,  y: 509 },   // = professor
                 professor: { x: 991,  y: 509 },
-                noroeste:  { x: 915,  y: 471 },
-                nordeste:  { x: 1185, y: 471 },
+                noroeste:  { x: 895,  y: 527 },
+                nordeste:  { x: 1178, y: 546 },
                 sudoeste:  { x: 915,  y: 635 },
                 sudeste:   { x: 1185, y: 635 }
             } },
@@ -60,7 +60,7 @@ function local_catalog() {
             pontos: {
                 padrao:    { x: 1001, y: 769 },   // = professor
                 professor: { x: 1001, y: 769 },
-                noroeste:  { x: 911,  y: 768 },
+                noroeste:  { x: 895,  y: 784 },
                 nordeste:  { x: 1183, y: 768 },
                 sudoeste:  { x: 911,  y: 891 },
                 sudeste:   { x: 1183, y: 891 }
@@ -100,7 +100,7 @@ function local_ponto(_sala, _slot = "padrao") {
 //  x,y = canto superior esquerdo do quadrado; w,h = tamanho.
 //  OBS: confira no jogo se algum quadrado cai em cima de parede/móvel.
 // ---------------------------------------------------------------------
-function busca_catalog() {
+function busca_catalog() {  // onde vai ter o item pro player coletar
     return {
         almoxarifado:       { x: 68,   y: 610, w: 50, h: 50 },  // cabe a sala inteira
         corredor_noroeste:  { x: 250,  y: 380, w: 50, h: 50 },

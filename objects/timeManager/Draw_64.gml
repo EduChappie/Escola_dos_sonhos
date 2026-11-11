@@ -20,7 +20,7 @@ draw_set_halign(fa_left)//optional
 draw_set_valign(fa_top)//optional
 
 
-if t_min < 1 and t_sec < 30 then draw_set_color(c_red)
+if t_sec < 10 then draw_set_color(c_red)
 
 
 draw_text(xp,yp,t)
