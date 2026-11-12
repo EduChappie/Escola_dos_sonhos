@@ -258,7 +258,7 @@ function mission_Data() {
                 { texto: "Não sei. Contrate alguém para resolver! (- R$ 80,00)", efeito: { dinheiro: -80 } },
 
                 { texto: "Restaurar ou reparar a peça danificada", correta: true,  efeito: { dinheiro: +80 } },
-                { texto: "Queimar no pátio",                       correta: false, efeito: { dinheiro: -120 } },
+                { texto: "Queimar no pátio",                       correta: false, efeito: { dinheiro: -60 } },
                 { texto: "Jogar no lixo comum",                    correta: false, efeito: { dinheiro: -120 } },
                 { texto: "Deixar do jeito que está",               correta: false, efeito: { dinheiro: -120 } },
 
@@ -274,7 +274,7 @@ function mission_Data() {
             consequencias: [
                 { quando: "acertou", apos_meses: 2, efeito: { infraestrutura: +2, felicidade_alunos: +2 },
                   texto: "A carteira foi reaproveitada e os alunos notaram o cuidado com a escola." },
-                { quando: "errou",   apos_meses: 1, efeito: { infraestrutura: -2 },
+                { quando: "errou",   apos_meses: 1, efeito: { infraestrutura: -5, felicidade_alunos: -5 },
                   texto: "A solução errada piorou o estado da sala." },
                 { quando: "pagou",   apos_meses: 1, efeito: { infraestrutura: +1 },
                   texto: "A carteira foi trocada, mas a velha foi para o lixo." },
@@ -406,7 +406,7 @@ function mission_Data() {
         {
             id: "bibliotecaria_livros_desaparecidos",
             titulo: "Livros Desaparecidos",
-            ativa: false,   // aguarda o NPC "bibliotecaria"
+            ativa: true,   // aguarda o NPC "bibliotecaria"
             tipo_missao: "busca",
             tipo_npc_alvo: "bibliotecaria",
             npc_id_especifico: "aluno_cammy", // personagem provisório
@@ -443,7 +443,7 @@ function mission_Data() {
         {
             id: "merendeira_bandejas",
             titulo: "O Problema da Cantina",
-            ativa: false,   // aguarda o NPC "merendeira"
+            ativa: true,   // aguarda o NPC "merendeira"
             tipo_missao: "busca",
             tipo_npc_alvo: "merendeira",
             npc_id_especifico: "merendeira",
@@ -480,7 +480,7 @@ function mission_Data() {
         {
             id: "professor_bolas_esportivas",
             titulo: "Bolas para a Educação Física",
-            ativa: false,   // aguarda o NPC "prof_educacao_fisica"
+            ativa: true,   // aguarda o NPC "prof_educacao_fisica"
             tipo_missao: "busca",
             tipo_npc_alvo: "professor",
             npc_id_especifico: "prof_educacao_fisica",
@@ -517,7 +517,7 @@ function mission_Data() {
         {
             id: "tecnico_cabo_hdmi",
             titulo: "Equipamentos da Informática",
-            ativa: false,   // aguarda o NPC "tecnico_informatica"
+            ativa: true,   // aguarda o NPC "tecnico_informatica"
             tipo_missao: "busca",
             tipo_npc_alvo: "professor",
             npc_id_especifico: undefined,
@@ -553,7 +553,7 @@ function mission_Data() {
         {
             id: "prof_matematica_pitagoras",
             titulo: "O Desafio de Pitágoras",
-            ativa: false,   // aguarda o NPC "prof_matematica"
+            ativa: true,   // aguarda o NPC "prof_matematica"
             tipo_missao: "dialogo",
             tipo_npc_alvo: "professor",
             npc_id_especifico: undefined,
@@ -589,7 +589,7 @@ function mission_Data() {
         {
             id: "prof_geografia_globalizacao",
             titulo: "O Mundo Conectado",
-            ativa: false,   // aguarda o NPC "prof_geografia"
+            ativa: true,   // aguarda o NPC "prof_geografia"
             tipo_missao: "dialogo",
             tipo_npc_alvo: "professor",
             npc_id_especifico: undefined,

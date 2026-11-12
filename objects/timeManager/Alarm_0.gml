@@ -1,3 +1,16 @@
+// ===== PAUSA DO RELÓGIO =====
+// O tempo NÃO corre durante diálogos/perguntas (o jogador precisa ler e pensar)
+// nem durante o fim de mês (resumo e fades). Só continua a "tick" depois.
+var _dialogo_aberto = instance_exists(dialogoManager_UI)
+	&& variable_instance_exists(dialogoManager_UI, "estado")
+	&& dialogoManager_UI.estado != "fechado";
+
+if (gameManager.fase != "jogando" || _dialogo_aberto) {
+	alarm[0] = 6;   // continua verificando, mas sem gastar tempo
+	exit;
+}
+
+
 //tick de tempo
 t_mil -= 1
 
@@ -16,21 +29,8 @@ if!(t_sec = 0 && t_min = 0 && t_mil = 0){
 	alarm[0] = 6
 	
 }else{
-	//quando timer termina
-	//da pra ao inves de game end colocar pra terminar o turno
-	
-	
-	/// == por favor, lembrar de alterar toda essa função,
-	///   isso não é responsabilidade de time_manger
-	if (gameManager.mes_atual < 11) {
-		
-		gameManager.novoMes()
-		
-	} else {
-		show_debug_message("Fim de jogo")
-		// levar pra sala de finalização
-		//room_goto(finished_screen)
-	}
-	
-	space_to_reset()
+	// tempo acabou: o gameManager cuida do resto (fade, resumo, mês novo, e
+	// reinicia este relógio em terminar_transicao()). Em dezembro o mesmo fluxo
+	// termina na avaliação final.
+	gameManager.fim_do_mes()
 }

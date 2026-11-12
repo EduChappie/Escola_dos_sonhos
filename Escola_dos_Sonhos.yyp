@@ -111,6 +111,7 @@
     {"id":{"name":"TopDownHouse_FurnitureState2","path":"sprites/TopDownHouse_FurnitureState2/TopDownHouse_FurnitureState2.yy",},},
     {"id":{"name":"TopDownHouse_SmallItems","path":"sprites/TopDownHouse_SmallItems/TopDownHouse_SmallItems.yy",},},
     {"id":{"name":"UI_Flat_Frame01a","path":"sprites/UI_Flat_Frame01a/UI_Flat_Frame01a.yy",},},
+    {"id":{"name":"UI_Flat_Frame03a_hover","path":"sprites/UI_Flat_Frame03a_hover/UI_Flat_Frame03a_hover.yy",},},
     {"id":{"name":"UI_Flat_Frame03a","path":"sprites/UI_Flat_Frame03a/UI_Flat_Frame03a.yy",},},
     {"id":{"name":"chao","path":"tilesets/chao/chao.yy",},},
     {"id":{"name":"furniture1","path":"tilesets/furniture1/furniture1.yy",},},

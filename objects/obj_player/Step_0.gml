@@ -1,5 +1,5 @@
-var _hor = keyboard_check(ord("D")) - keyboard_check(ord("A"));
-var _ver = keyboard_check(ord("S")) - keyboard_check(ord("W"));
+var _hor = (keyboard_check(ord("D")) - keyboard_check(ord("A"))) * (gameManager.fase == "jogando");   // trava no fim de mês
+var _ver = (keyboard_check(ord("S")) - keyboard_check(ord("W"))) * (gameManager.fase == "jogando");
 
 
 // Corrigir velocidade diagonal

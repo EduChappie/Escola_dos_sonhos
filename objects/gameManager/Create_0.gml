@@ -30,13 +30,14 @@ ensino               = 50;
 felicidade_alunos    = 50;
 felicidade_professor = 50;
 moeda                = 160;   
+verba_mensal         = 50;   // dinheiro que entra a cada virada de mês
 
 eventos_criticos = [];        
 
 // ===== MEMÓRIA DO JOGO (consequências) =====
 flags = {};              // marcas ativadas por consequências: { "zelador_pediu_material": true }
 noticias_do_mes = [];    // textos das consequências que aconteceram na virada do mês
-                         // (para a tela de fim de mês mostrar depois)
+                         // (a tela de resumo do mês mostra isso)
 
 function flag_set(_nome) {
 	flags[$ _nome] = true;
@@ -45,6 +46,12 @@ function flag_set(_nome) {
 function flag_tem(_nome) {
 	return flags[$ _nome] ?? false;
 }
+
+// ===== FASE DO JOGO / RESUMO DO MÊS =====
+fase = "jogando";        // "jogando" | "transicao" (fim de mês: fades + tela de resumo)
+mes_inicio = undefined;  // "foto" dos parâmetros no começo do mês (preenchida no fim deste Create)
+resumo_atual = undefined;
+historico_meses = [];    // um resumo por mês fechado (usado na avaliação final)
 
 // Barras que aparecem na tela (nome da variável, texto e cor)
 barras = [
@@ -131,35 +138,126 @@ function evento_critico_executar(_nome) {
 
 
 
-// ===== FLUXO DO MÊS =====
+// =====================================================================
+//  FLUXO DO MÊS
+//
+//  Tempo zerou -> fim_do_mes()
+//     1) o jogo congela (fase = "transicao") e a tela escurece (fade out)
+//     2) fechar_mes(): penalidades, mês novo, verba, consequências -> monta o RESUMO
+//     3) o painel de resumo desliza (statusManager_UI) e espera o botão Continuar
+//     4) abrir_mes(): reposiciona NPCs, sorteia missões, tira a nova "foto" do mês
+//     5) fade in -> terminar_transicao(): o jogo volta e o relógio recomeça
+// =====================================================================
+
+// foto dos parâmetros neste instante (para comparar no fim do mês)
+function foto_estado() {
+	return {
+		felicidade_alunos:    felicidade_alunos,
+		felicidade_professor: felicidade_professor,
+		ensino:               ensino,
+		infraestrutura:       infraestrutura,
+		moeda:                moeda
+	};
+}
+
 function reset() {
 	NPCManager.npc_posicionar(mes_atual);
 	missionManager.mission_sortear_para_mes(mes_atual);
 }
 
-function novoMes() {
+// chamado pelo timeManager quando o relógio chega a zero
+function fim_do_mes() {
+	if (fase != "jogando") return;
+	fase = "transicao";
+	if (instance_exists(dialogoManager_UI)) dialogoManager_UI.fechar();
+	statusManager_UI.resumo_iniciar();   // começa o fade out
+}
+
+// calcula o mês e devolve o resumo (chamado com a tela toda preta)
+function fechar_mes() {
+	var _mes    = mes_atual;
+	var _ultimo = (_mes >= 11);
+
 	// 1) penalidades das missões que ficaram pendentes
 	missionManager.mission_processar_fim_de_mes();
 
-	// 2) avança o mês
-	mes_atual += 1;
-	moeda += 200;
+	// quantas missões foram encerradas neste mês
+	var _resolvidas = 0;
+	var _expiradas  = 0;
+	var _hist = missionManager.mission_history;
+	for (var i = 0; i < array_length(_hist); i++) {
+		if ((_hist[i][$ "mes_resolucao"] ?? -1) != _mes) continue;
+		if ((_hist[i][$ "resultado"] ?? "") == "expirou") _expiradas++;
+		else _resolvidas++;
+	}
 
-	// 3) consequências de missões de meses anteriores que vencem agora
-	missionManager.mission_aplicar_consequencias(mes_atual);
-
-	obj_player.resetPosition();
+	// 2) avança o mês, entra a verba e vencem as consequências agendadas
+	var _verba = 0;
+	noticias_do_mes = [];
+	if (!_ultimo) {
+		mes_atual += 1;
+		_verba = verba_mensal;
+		moeda += _verba;
+		missionManager.mission_aplicar_consequencias(mes_atual);
+	}
 	statusManager_UI.reset_values();
-	show_debug_message("Passou o mês: " + meses[mes_atual]);
 
-	// 4) posiciona NPCs e sorteia as missões do novo mês
-	reset();
+	// 3) monta o resumo comparando com a foto do início do mês
+	var _antes = mes_inicio;
+	var _linhas = [];
+	for (var i = 0; i < array_length(barras); i++) {
+		var _b = barras[i];
+		var _a = _antes[$ _b.var_nome];
+		var _d = variable_instance_get(id, _b.var_nome);
+		array_push(_linhas, { nome: _b.texto, antes: _a, depois: _d, delta: _d - _a });
+	}
+
+	var _resumo = {
+		mes_indice:  _mes,
+		mes_nome:    meses[_mes],
+		proximo_nome: (_ultimo ? "" : meses[mes_atual]),
+		ultimo:      _ultimo,
+		linhas:      _linhas,
+		dinheiro:    { antes: _antes.moeda, depois: moeda, delta: moeda - _antes.moeda, verba: _verba },
+		noticias:    noticias_do_mes,
+		resolvidas:  _resolvidas,
+		expiradas:   _expiradas,
+		pendentes:   array_length(missionManager.active_missions)
+	};
+
+	array_push(historico_meses, _resumo);
+	resumo_atual = _resumo;
+	show_debug_message("Mês fechado: " + _resumo.mes_nome);
+	return _resumo;
+}
+
+// prepara o mês novo (chamado ainda escondido pela tela preta)
+function abrir_mes() {
+	obj_player.resetPosition();
+	reset();                              // posiciona NPCs e sorteia as missões
+	statusManager_UI.reset_values();
+	mes_inicio = foto_estado();
+	show_debug_message("Começou o mês: " + meses[mes_atual]);
+}
+
+// fade in terminou: devolve o controle ao jogador e reinicia o relógio
+function terminar_transicao() {
+	fase = "jogando";
+	timeManager.reset();
+}
+
+// dezembro fechado: vai para a avaliação final
+function encerrar_ano() {
+	global.historico_ano = historico_meses;   // a sala final lê daqui
+	show_debug_message("Fim de jogo");
+	if (room_exists(Statisticas_final)) room_goto(Statisticas_final);
 }
 
 // ===== início do jogo =====
 NPCManager.npc_posicionar(mes_atual);
 missionManager.mission_sortear_para_mes(mes_atual);
 timeManager.reset();
+mes_inicio = foto_estado();
 
 
 missionManager.mission_validar_catalogo();

@@ -34,3 +34,8 @@ for (i = 0; i < array_length(ui); i++) {
         draw_text(item.x, item.y, item.value);
     }
 }
+
+
+// ===== RESUMO DE FIM DE MÊS (fica por cima de tudo) =====
+resumo_atualizar();
+resumo_desenhar();

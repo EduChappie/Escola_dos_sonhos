@@ -2,6 +2,9 @@
 // mas fica mais fácil o timerManager
 // gerenciar todo o tempo mesmo
 
+// no fim de mês (fades e resumo) o relógio some, para não ficar por cima da tela preta
+if (gameManager.fase != "jogando") exit;
+
 //desenhar o timer
 var t =""
 t += "Tempo: "
