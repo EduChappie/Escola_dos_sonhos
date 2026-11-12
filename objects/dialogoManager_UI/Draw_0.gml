@@ -2,12 +2,21 @@
 // verifica se o NPC está disponível pra falar
 // desenha balão de conversa
 
+
+
 var ids = variable_struct_get_names(NPCManager.instancias)
 
 
 for (var n = 0; n < array_length(ids); n++) {
+	
+	
 	var _npc = ids[n];
 	var _inst = NPCManager.instancias[$ _npc];
+	
+	
+	if (!instance_exists(_inst)) {
+		continue;
+	}
 	
 	if (missionManager.missao_pendente_de(_npc) != undefined) {
         draw_sprite(ballon, 0, _inst.x, _inst.y - 30);

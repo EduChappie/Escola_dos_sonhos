@@ -625,7 +625,7 @@ function mission_Data() {
         {
             id: "prof_portugues_metafora",
             titulo: "Interpretando as Palavras",
-            ativa: false,   // aguarda o NPC "prof_portugues"
+            ativa: true,   // aguarda o NPC "prof_portugues"
             tipo_missao: "dialogo",
             tipo_npc_alvo: "professor",
             npc_id_especifico: undefined,

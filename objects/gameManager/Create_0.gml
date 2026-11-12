@@ -176,7 +176,7 @@ function fim_do_mes() {
 // calcula o mês e devolve o resumo (chamado com a tela toda preta)
 function fechar_mes() {
 	var _mes    = mes_atual;
-	var _ultimo = (_mes >= 11);
+	var _ultimo = (_mes >= 3);  // onde verificamos quando o jogo acaba
 
 	// 1) penalidades das missões que ficaram pendentes
 	missionManager.mission_processar_fim_de_mes();
@@ -200,6 +200,7 @@ function fechar_mes() {
 		moeda += _verba;
 		missionManager.mission_aplicar_consequencias(mes_atual);
 	}
+	
 	statusManager_UI.reset_values();
 
 	// 3) monta o resumo comparando com a foto do início do mês
@@ -228,6 +229,12 @@ function fechar_mes() {
 	array_push(historico_meses, _resumo);
 	resumo_atual = _resumo;
 	show_debug_message("Mês fechado: " + _resumo.mes_nome);
+	
+	if (_ultimo) {
+	    encerrar_ano();
+	    return _resumo;
+	}
+	
 	return _resumo;
 }
 
@@ -250,6 +257,9 @@ function terminar_transicao() {
 function encerrar_ano() {
 	global.historico_ano = historico_meses;   // a sala final lê daqui
 	show_debug_message("Fim de jogo");
+	
+	NPCManager.npc_remover_atuais()
+	
 	if (room_exists(Statisticas_final)) room_goto(Statisticas_final);
 }
 

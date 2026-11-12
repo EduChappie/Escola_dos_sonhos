@@ -1,14 +1,17 @@
 // ===== PAUSA DO RELÓGIO =====
 // O tempo NÃO corre durante diálogos/perguntas (o jogador precisa ler e pensar)
 // nem durante o fim de mês (resumo e fades). Só continua a "tick" depois.
-var _dialogo_aberto = instance_exists(dialogoManager_UI)
-	&& variable_instance_exists(dialogoManager_UI, "estado")
-	&& dialogoManager_UI.estado != "fechado";
 
-if (gameManager.fase != "jogando" || _dialogo_aberto) {
-	alarm[0] = 6;   // continua verificando, mas sem gastar tempo
-	exit;
-}
+// não decidi se quero que o tempo pare, por isso comentei...
+
+//var _dialogo_aberto = instance_exists(dialogoManager_UI)
+//	&& variable_instance_exists(dialogoManager_UI, "estado")
+//	&& dialogoManager_UI.estado != "fechado";
+
+//if (gameManager.fase != "jogando" || _dialogo_aberto) {
+//	alarm[0] = 6;   // continua verificando, mas sem gastar tempo
+//	exit;
+//}
 
 
 //tick de tempo

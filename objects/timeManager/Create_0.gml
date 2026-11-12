@@ -7,7 +7,7 @@ space = [0, 2, 0]
 
 // tempo de passagem do mês
 pmin = 0    // duração do mês em minutos (ideal: 3 a 5). Antes era 60, só para testes
-psec = 5
+psec = 45
 pmil = 0
 
 // começa a contagem
