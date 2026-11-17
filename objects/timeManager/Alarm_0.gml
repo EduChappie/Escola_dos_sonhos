@@ -3,15 +3,17 @@
 // nem durante o fim de mês (resumo e fades). Só continua a "tick" depois.
 
 // não decidi se quero que o tempo pare, por isso comentei...
+// decidido, o tempo tem que para
+  
 
-//var _dialogo_aberto = instance_exists(dialogoManager_UI)
-//	&& variable_instance_exists(dialogoManager_UI, "estado")
-//	&& dialogoManager_UI.estado != "fechado";
+var _dialogo_aberto = instance_exists(dialogoManager_UI)
+	&& variable_instance_exists(dialogoManager_UI, "estado")
+	&& dialogoManager_UI.estado != "fechado";
 
-//if (gameManager.fase != "jogando" || _dialogo_aberto) {
-//	alarm[0] = 6;   // continua verificando, mas sem gastar tempo
-//	exit;
-//}
+if (gameManager.fase != "jogando" || _dialogo_aberto) {
+	alarm[0] = 6;   // continua verificando, mas sem gastar tempo
+	exit;
+}
 
 
 //tick de tempo
