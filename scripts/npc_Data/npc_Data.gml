@@ -205,7 +205,7 @@ function npc_catalog() {
             nome: "Sr. Rodrigo",
             tipo: "zelador",
             materia: undefined,
-            sprite: sAlunoA1_down_idle,   // sprite provisório (trocar quando existir o do zelador)
+            sprite: sZelador_front_idle,   // sprite provisório (trocar quando existir o do zelador)
             afinidade: 0,
             i: 0,
             rota: [
@@ -234,6 +234,20 @@ function npc_catalog() {
             tipo: "aluno",
             materia: undefined,
             sprite: sAlunoB1_front_idle,
+            afinidade: 0,
+            i: 0,
+            rota: [
+                "sala_02:sudoeste", "sala_02:sudoeste", "biblioteca",      "corredor:oeste",
+                "sala_02:nordeste", "cantina",          "sala_02:sudeste", "biblioteca",
+                "sala_02:sudoeste", "cantina",          "corredor:sul",    "sala_02:nordeste"
+            ],
+        },
+		{
+            id: "bibliotecaria_Triss",
+            nome: "Sr. Merigold",
+            tipo: "bibliotecaria",
+            materia: undefined,
+            sprite: sBibliotecaria_front_idle,
             afinidade: 0,
             i: 0,
             rota: [
