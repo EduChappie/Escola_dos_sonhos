@@ -11,8 +11,8 @@
   "name":"obj_player",
   "overriddenProperties":[],
   "parent":{
-    "name":"Escola_dos_Sonhos",
-    "path":"Escola_dos_Sonhos.yyp",
+    "name":"objs",
+    "path":"folders/objs.yy",
   },
   "parentObjectId":null,
   "persistent":false,

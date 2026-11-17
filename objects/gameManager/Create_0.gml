@@ -5,6 +5,7 @@ meses = [
 randomise();
 
 mes_atual = 0;
+total_meses = 4;   // quantos meses dura a partida (a avaliação final vem depois do último). Use 12 para o ano completo.
 
 // =====================================================================
 //  OS 4 PARÂMETROS DO JOGO (0 a 100 = já é a porcentagem)
@@ -176,7 +177,7 @@ function fim_do_mes() {
 // calcula o mês e devolve o resumo (chamado com a tela toda preta)
 function fechar_mes() {
 	var _mes    = mes_atual;
-	var _ultimo = (_mes >= 3);  // onde verificamos quando o jogo acaba
+	var _ultimo = (_mes >= total_meses - 1);  // onde verificamos quando o jogo acaba
 
 	// 1) penalidades das missões que ficaram pendentes
 	missionManager.mission_processar_fim_de_mes();

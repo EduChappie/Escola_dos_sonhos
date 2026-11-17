@@ -39,3 +39,7 @@ for (i = 0; i < array_length(ui); i++) {
 // ===== RESUMO DE FIM DE MÊS (fica por cima de tudo) =====
 resumo_atualizar();
 resumo_desenhar();
+
+// ===== TELA FINAL: botão de reiniciar (só aparece na Statisticas_final) =====
+final_atualizar();
+final_desenhar();

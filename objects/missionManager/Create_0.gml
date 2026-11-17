@@ -1,6 +1,6 @@
 
 missoes_por_mes = 4;   // máximo de missões novas por mês (ajuste à vontade)
-modo_teste = true;     // true = ignora meses_disponiveis das missões
+modo_teste = false;     // true = ignora meses_disponiveis das missões
 missoes_vistas = [];
 proximo_id = 0;        // contador para IDs únicos
 

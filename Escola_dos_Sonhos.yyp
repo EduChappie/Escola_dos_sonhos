@@ -41,6 +41,7 @@
   "resources":[
     {"id":{"name":"font_normal","path":"fonts/font_normal/font_normal.yy",},},
     {"id":{"name":"Font_principal","path":"fonts/Font_principal/Font_principal.yy",},},
+    {"id":{"name":"Fredericka_final","path":"fonts/Fredericka_final/Fredericka_final.yy",},},
     {"id":{"name":"Fredericka_titulo","path":"fonts/Fredericka_titulo/Fredericka_titulo.yy",},},
     {"id":{"name":"Fredericka","path":"fonts/Fredericka/Fredericka.yy",},},
     {"id":{"name":"LEIA-ME 2","path":"notes/LEIA-ME 2/LEIA-ME 2.yy",},},
@@ -138,8 +139,8 @@
     {"roomId":{"name":"Menu","path":"rooms/Menu/Menu.yy",},},
     {"roomId":{"name":"Escola","path":"rooms/Escola/Escola.yy",},},
     {"roomId":{"name":"Statisticas_fim_mes","path":"rooms/Statisticas_fim_mes/Statisticas_fim_mes.yy",},},
-    {"roomId":{"name":"Statisticas_final","path":"rooms/Statisticas_final/Statisticas_final.yy",},},
     {"roomId":{"name":"intro","path":"rooms/intro/intro.yy",},},
+    {"roomId":{"name":"Statisticas_final","path":"rooms/Statisticas_final/Statisticas_final.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[

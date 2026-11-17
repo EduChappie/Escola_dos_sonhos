@@ -230,7 +230,7 @@ function npc_catalog() {
         },
         {
             id: "aluno_cammy",
-            nome: "Sr. Cammy",
+            nome: "Srta. Cammy",
             tipo: "aluno",
             materia: undefined,
             sprite: sAlunoB1_front_idle,
@@ -243,17 +243,19 @@ function npc_catalog() {
             ],
         },
 		{
-            id: "bibliotecaria_Triss",
-            nome: "Sr. Merigold",
+            id: "bibliotecaria_triss",
+            nome: "Sra. Merigold",
             tipo: "bibliotecaria",
             materia: undefined,
             sprite: sBibliotecaria_front_idle,
             afinidade: 0,
             i: 0,
+            // Rota PRÓPRIA (antes era cópia da aluna Cammy e as duas ficavam no mesmo lugar).
+            // Conferida mês a mês: nenhum outro NPC usa o mesmo ponto no mesmo mês.
             rota: [
-                "sala_02:sudoeste", "sala_02:sudoeste", "biblioteca",      "corredor:oeste",
-                "sala_02:nordeste", "cantina",          "sala_02:sudeste", "biblioteca",
-                "sala_02:sudoeste", "cantina",          "corredor:sul",    "sala_02:nordeste"
+                "biblioteca",       "corredor:norte",   "diretoria",        "cantina",
+                "sala_02:noroeste", "corredor:oeste",   "biblioteca",       "entrada",
+                "biblioteca",       "corredor:oeste",   "biblioteca",       "sala_01:sudeste"
             ],
         },
     ];

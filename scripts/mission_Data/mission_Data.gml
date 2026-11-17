@@ -409,7 +409,7 @@ function mission_Data() {
             ativa: true,   // aguarda o NPC "bibliotecaria"
             tipo_missao: "busca",
             tipo_npc_alvo: "bibliotecaria",
-            npc_id_especifico: "aluno_cammy", // personagem provisório
+            npc_id_especifico: "bibliotecaria_triss",
             meses_disponiveis: [3],
             peso_sorteio: 1.0,
 

@@ -6,8 +6,11 @@ depth = -2000   // abaixo do statusManager_UI (-1000): o relógio fica por cima 
 space = [0, 2, 0]
 
 // tempo de passagem do mês
-pmin = 1   // duração do mês em minutos (ideal: 3 a 5). Antes era 60, só para testes
-psec = 0
+// Vem da tela de Opcoes do menu (global.tempo_fase_seg, em segundos). Padrao: 60 s.
+// Se a room Escola for aberta direto (sem passar pelo menu), usa 60 s.
+var _total_seg = variable_global_exists("tempo_fase_seg") ? global.tempo_fase_seg : 60;
+pmin = _total_seg div 60   // minutos
+psec = _total_seg mod 60   // segundos
 pmil = 0
 
 // começa a contagem

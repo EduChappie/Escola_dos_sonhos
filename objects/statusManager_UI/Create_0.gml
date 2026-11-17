@@ -33,6 +33,119 @@ hold_t        = 0;      // frames que o nome do mês fica na tela preta antes do
 botao         = { x: 0, y: 0, w: 0, h: 0 };   // área do botão Continuar (atualizada no desenho)
 
 
+// =====================================================================
+//  TELA FINAL (room Statisticas_final): botão "Jogar novamente"
+//
+//  Roda a partir do Draw GUI, igual ao resumo do mês. Só age na room
+//  Statisticas_final e só depois que o painel de resumo já fechou.
+//
+//  Quem reinicia de verdade é final_reiniciar(): fecha a tela com a transição
+//  em círculo e volta para sala_reinicio (Menu). O obj_menu destrói os managers
+//  persistentes ao abrir, então a nova partida começa do zero.
+//
+//  Para colocar o botão com visual novo: mexa só em final_desenhar() (e no
+//  tamanho/posição em final_botao). Se usar outro objeto/botão, basta ele chamar
+//  statusManager_UI.final_reiniciar().
+// =====================================================================
+final_botao   = { x: 0, y: 0, w: 340, h: 64 };   // x,y são calculados em final_atualizar()
+final_t       = 0;        // frames na tela final (evita clique "fantasma" ao chegar)
+sala_reinicio = Menu;     // para onde voltar ao reiniciar (Menu, intro...)
+nota_partida  = "-";      // nota final mostrada na tela final (A+, A, B ou C), calculada em calcular_nota()
+
+// Nota da partida, olhando os 4 parâmetros (felicidade dos alunos, dos professores,
+// infraestrutura e ensino). A ordem importa: o C vem primeiro, porque um único
+// parâmetro baixo já derruba a nota, mesmo que os outros estejam altos.
+//   algum abaixo de 30      -> C
+//   todos acima de 60       -> A+
+//   todos acima de 50       -> A
+//   qualquer outro caso     -> B
+function calcular_nota() {
+	if (!instance_exists(gameManager)) return;
+
+	var _menor = min(
+		gameManager.felicidade_alunos,
+		gameManager.felicidade_professor,
+		gameManager.infraestrutura,
+		gameManager.ensino
+	);
+
+	if (_menor < 30)      nota_partida = "C";
+	else if (_menor > 60) nota_partida = "A+";
+	else if (_menor > 50) nota_partida = "A";
+	else                  nota_partida = "B";
+}
+
+function final_ativa() {
+	return (room == Statisticas_final && resumo_estado == "inativo");
+}
+
+function final_reiniciar() {
+	if (instance_exists(obj_transicao)) return;   // já está reiniciando
+	var _t = instance_create_depth(0, 0, -10000, obj_transicao);
+	_t.velocidade   = 20;
+	_t.sala_destino = sala_reinicio;
+}
+
+function final_atualizar() {
+	if (!final_ativa()) { final_t = 0; return; }
+	final_t += 1;
+	calcular_nota();
+
+	final_botao.x = 100;
+	final_botao.y = 224;
+
+	if (final_t < 60) return;   // ~1 s: o clique que fechou o resumo não conta
+
+	var _mx = device_mouse_x_to_gui(0);
+	var _my = device_mouse_y_to_gui(0);
+	var _clicou = mouse_check_button_pressed(mb_left)
+		&& point_in_rectangle(_mx, _my, final_botao.x, final_botao.y, final_botao.x + final_botao.w, final_botao.y + final_botao.h);
+	var _tecla = keyboard_check_pressed(ord("R"));
+
+	if (_clicou || _tecla) final_reiniciar();
+}
+
+function final_desenhar() {
+	if (!final_ativa()) return;
+
+	var _mx = device_mouse_x_to_gui(0);
+	var _my = device_mouse_y_to_gui(0);
+	var _hover = point_in_rectangle(_mx, _my, final_botao.x, final_botao.y, final_botao.x + final_botao.w, final_botao.y + final_botao.h);
+
+	draw_sprite_stretched(
+		_hover ? UI_Flat_Frame03a_hover : UI_Flat_Frame03a,
+		0,
+		final_botao.x, final_botao.y, final_botao.w, final_botao.h
+	);
+
+	draw_set_font(Font_principal);
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_middle);
+	draw_set_color(c_black);
+	draw_text(final_botao.x + final_botao.w / 2, final_botao.y + final_botao.h / 2, "Jogar novamente  [R]")		
+	
+	// texto que aparece no fim do jogo, provisório, não mexer na estrutura, só no texto, por enquanto.
+	
+	draw_set_font(Fredericka_final);
+	draw_text(1000, 210, "Fim da Demo!!")
+	draw_text(1000, 350, "Obrigado por jogar")
+	
+	draw_set_colour(c_white)
+	draw_text(960, 480, "Desempenho: ")
+	// cor da nota: verde (A+/A), amarelo (B), vermelho (C)
+	if (nota_partida == "C")      draw_set_colour(c_red);
+	else if (nota_partida == "B") draw_set_colour(c_yellow);
+	else                          draw_set_colour(c_lime);
+	draw_text(1300, 480, nota_partida)
+
+
+	draw_set_font(Font_principal);
+	draw_set_halign(fa_left);
+	draw_set_valign(fa_top);
+	draw_set_color(c_white);
+}
+
+
 // chamado pelo gameManager quando o tempo zera
 function resumo_iniciar() {
 	resumo_estado = "fade_out";
@@ -289,7 +402,7 @@ function resumo_desenhar() {
 		draw_set_halign(fa_center);
 		draw_set_valign(fa_middle);
 		draw_text_transformed(_gw / 2, _gh / 2 - 20, gameManager.meses[gameManager.mes_atual], 3, 3, 0);
-		draw_text(_gw / 2, _gh / 2 + 40, "Mês " + string(gameManager.mes_atual + 1) + " de 12");
+		draw_text(_gw / 2, _gh / 2 + 40, "Mês " + string(gameManager.mes_atual + 1) + " de " + string(gameManager.total_meses));
 	}
 
 	draw_set_alpha(1);

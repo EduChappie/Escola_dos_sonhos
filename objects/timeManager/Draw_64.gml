@@ -23,7 +23,9 @@ draw_set_halign(fa_left)//optional
 draw_set_valign(fa_top)//optional
 
 
-if t_sec < 10 then draw_set_color(c_red)
+// vermelho só nos últimos 10 segundos (antes ficava vermelho em todo "x:0y", ex.: 1:05)
+if (t_min == 0 && t_sec < 10) draw_set_color(c_red)
 
 
 draw_text(xp,yp,t)
+draw_set_color(c_white)   // não deixa o vermelho vazar para os outros desenhos da GUI
